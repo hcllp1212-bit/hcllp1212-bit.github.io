@@ -560,7 +560,36 @@
         <div id="menu" class="menu" role="navigation">
           <a href="index.html">Home</a>
           <div class="dropdown">
-            <a href="about_us.html">About</a>
+            
+            <div class="navmenu">
+  <style>
+    /* Existing styles for .menu > a and .menu .dropdown > a */
+    .menu > a,
+    .menu .dropdown > a {
+      font-weight: 600;
+      color: #2a3e5e;
+      font-size: 15px;
+      transition: color 0.3s;
+    }
+
+    /* Styles for the new .navmenu > a */
+    .navmenu > a {
+      font-weight: 600;
+      color: #2a3e5e;
+      font-size: 15px;
+      transition: color 0.3s;
+      text-decoration: none; /* Ensure no underline */
+    }
+
+    /* Hover effect for the new .navmenu > a */
+    .navmenu > a:hover {
+      color: #007bff; /* Change to your desired hover color */
+    }
+  </style>
+  <a href="about_us.html">About</a>
+</div>
+
+            <!-- <a href="about_us.html">About</a> -->
             <!-- <div class="dropdown-menu"> -->
               <!-- <a href="#profile">Firm Profile</a>
               <a href="#team">Our Team</a>
