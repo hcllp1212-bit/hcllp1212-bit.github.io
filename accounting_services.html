@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Accounting Services — Aiken & Sanders</title>
+  <meta name="description" content="Aiken & Sanders, Inc. PS — Practical, reliable accounting services with a human touch: virtual accounting, GL, A/P, A/R, payroll, software implementation, and more." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --blue-900:#0a2342; /* deep hero blue */
+      --blue-800:#0f2f54; /* section blue */
+      --blue-100:#eef3f9;
+      --ink:#0e1a2b;       /* primary text */
+      --muted:#516381;     /* secondary text */
+      --gold:#FEB200;      /* brand gold */
+      --gold-strong:#FEB200;
+      --line:#e6edf5;      /* borders */
+      --white:#ffffff;
+      --shadow:0 10px 30px rgba(8,20,40,.08);
+      --radius:16px; --rsm:12px; --rlg:22px; --maxw:1200px;
+      --safe-top: env(safe-area-inset-top); /* iOS safe areas */
+      --safe-btm: env(safe-area-inset-bottom);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,Helvetica,sans-serif;color:var(--ink);background:#fff;line-height:1.6}
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block;height:auto}
+    .container{max-width:var(--maxw);margin:0 auto;padding:0 20px}
+
+    /* Header / Nav */
+    header.header{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.95);backdrop-filter:saturate(140%) blur(10px);border-bottom:1px solid var(--line)}
+    .nav{display:flex;align-items:center;justify-content:space-between;padding:16px 0}
+    .brand{display:flex;align-items:center;gap:10px}
+    .brand img{height:56px;width:auto;object-fit:contain;max-width:220px}
+    .menu{display:flex;gap:20px;align-items:center}
+    .menu> a, .menu .dropdown> a{font-weight:600;color:#2a3e5e;font-size:15px;transition:color .3s}
+    .menu> a:hover, .menu .dropdown> a:hover{color:#000}
+
+    .dropdown{position:relative}
+    .dropdown> a{display:inline-flex;align-items:center;gap:4px}
+    .dropdown> a::after{content:'▼';font-size:10px;transition:transform .3s}
+    .dropdown:hover> a::after{transform:rotate(180deg)}
+    .dropdown-menu{position:absolute;top:100%;left:0;background:#fff;min-width:200px;border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,.12);border:1px solid var(--line);margin-top:8px;opacity:0;visibility:hidden;transform:translateY(-10px);transition:all .3s ease;z-index:1000}
+    .dropdown:hover .dropdown-menu{opacity:1;visibility:visible;transform:translateY(0)}
+    .dropdown-menu a{display:block;padding:10px 16px;color:#516381;font-size:14px;font-weight:500;transition:all .2s;border-bottom:1px solid rgba(230,237,245,.5)}
+    .dropdown-menu a:last-child{border-bottom:none}
+    .dropdown-menu a:hover{background:var(--blue-100);color:var(--blue-900);padding-left:20px}
+    .dropdown-menu a:first-child{border-radius:12px 12px 0 0}
+    .dropdown-menu a:last-child{border-radius:0 0 12px 12px}
+
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:10px 18px;border-radius:10px;border:1px solid var(--gold-strong);background:linear-gradient(180deg,#FEB200,var(--gold));font-weight:700;box-shadow:0 8px 20px rgba(254,178,0,.18);color:#000 !important;font-size:15px;white-space:nowrap;transition:transform .2s;text-align:center}
+    .btn:hover{transform:translateY(-2px);box-shadow:0 10px 25px rgba(254,178,0,.25)}
+    .btn--ghost{background:#fff;border-color:var(--gold-strong);color:#000 !important}
+    .btn--outline{background:#fff;border:2px solid var(--gold-strong);color:#000 !important;box-shadow:none;transition:all .3s ease}
+    .btn--outline:hover{background:var(--gold);transform:translateY(-2px);box-shadow:0 6px 16px rgba(254,178,0,.2)}
+
+    /* Mobile nav */
+    .hamburger{display:none;border:none;background:transparent;padding:4px;cursor:pointer;width:40px;height:40px;position:relative;margin-left:auto}
+    .hamburger svg{width:28px;height:28px;stroke:var(--ink);stroke-width:2.5;fill:none}
+    .hidden{display:none !important}
+    .menu-mobile{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.5);z-index:999;opacity:0;transition:opacity .3s ease}
+    .menu-mobile.show{opacity:1}
+    .menu-panel{position:fixed;top:0;left:-100%;width:80%;max-width:340px;height:100%;background:#fff;box-shadow:4px 0 20px rgba(0,0,0,.12);transition:left .3s ease;z-index:1000;overflow-y:auto;padding-bottom:var(--safe-btm)}
+    .menu-mobile.show .menu-panel{left:0}
+    .menu-header{display:flex;align-items:center;justify-content:space-between;padding:16px 20px; padding-top:calc(16px + var(--safe-top)); border-bottom:1px solid var(--line);background:var(--blue-100)}
+    .menu-header img{height:40px;width:auto}
+    .close-menu{background:transparent;border:none;cursor:pointer;padding:6px}
+    .close-menu svg{width:28px;height:28px;stroke:var(--ink);stroke-width:2.5;fill:none}
+    .menu-mobile-nav{padding:0}
+    .menu-mobile-nav> a, .menu-mobile-nav .mobile-dropdown> a{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;color:var(--ink);font-size:16px;font-weight:500;border-bottom:1px solid rgba(230,237,245,.5);transition:background .2s}
+    .menu-mobile-nav> a:hover, .menu-mobile-nav .mobile-dropdown> a:hover{background:var(--blue-100)}
+    .mobile-dropdown{position:relative}
+    .mobile-dropdown> a::after{content:'›';font-size:20px;transition:transform .3s}
+    .mobile-dropdown.active> a::after{transform:rotate(90deg)}
+    .mobile-dropdown-menu{display:none;background:#f8fafd}
+    .mobile-dropdown.active .mobile-dropdown-menu{display:block}
+    .mobile-dropdown-menu a{display:block;padding:12px 20px 12px 40px;color:#516381;font-size:15px;border-bottom:1px solid rgba(230,237,245,.3);transition:background .2s}
+    .mobile-dropdown-menu a:hover{background:#fff}
+    .menu-mobile-cta{padding:20px;border-top:1px solid var(--line);background:var(--blue-100)}
+    .menu-mobile-cta .btn{width:100%;justify-content:center;padding:14px;font-size:16px}
+
+    /* Responsive switch */
+    @media (max-width: 960px){
+      #menu{display:none}
+      .hamburger{display:inline-flex;align-items:center;justify-content:center}
+      .brand img{height:44px}
+      .nav{padding:12px 0}
+    }
+
+    /* Hero */
+    .hero{background:linear-gradient(165deg, rgba(10,35,66,.85), rgba(10,35,66,.65)), url('https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=1920&auto=format&fit=crop');background-size:cover;background-position:center;color:#fff;display:grid;place-items:center;min-height:440px}
+    .hero .wrap{display:flex;flex-direction:column;align-items:center;gap:14px;padding:92px 0 98px;text-align:center}
+    .hero h1{font-family:Merriweather, Georgia, serif;line-height:1.15;font-size:clamp(28px,4.2vw,46px);margin:0}
+    .hero p{max-width:78ch;opacity:.95;font-size:clamp(14px,2vw,18px);margin:0 auto}
+
+    /* Sections */
+    .section{padding:64px 0}
+    .section h2{font-family:Merriweather, Georgia, serif;margin:0 0 10px;color:#152239}
+    .sub{color:var(--muted);margin:0}
+
+    /* Split content */
+    .split{display:grid;grid-template-columns:1.05fr .95fr;gap:18px;align-items:center}
+    .box{background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);padding:18px}
+    figure.media{border-radius:14px;overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow);margin:0}
+    figure.media img{width:100%;height:100%;object-fit:cover}
+    @media (max-width: 960px){.split{grid-template-columns:1fr}}
+
+    /* Chips-list */
+    .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+    .chips .chip{background:#fff;border:1px solid var(--line);color:#2a3e5e}
+
+    /* Cards grid */
+    .cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:14px}
+    .card{background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);padding:18px}
+    .card h3{margin:0 0 6px;font-size:18px}
+    .card p{margin:0;color:#5a6a82}
+    @media (max-width: 1024px){.cards{grid-template-columns:repeat(2,1fr)}}
+    @media (max-width: 640px){.cards{grid-template-columns:1fr}}
+
+    /* Benefits list */
+    .benefits{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:14px}
+    .benefit{background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);padding:18px}
+    .benefit h4{margin:0 0 6px}
+    .benefit p{margin:0;color:#5a6a82}
+    @media (max-width: 900px){.benefits{grid-template-columns:1fr}}
+
+    /* CTA strip & footer */
+    .cta-strip{background:var(--blue-800);padding:40px 0;color:#fff}
+    .cta-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:20px}
+    .panel{border-radius:14px;padding:20px}
+    .panel--light{background:#f6f9ff;border:1px solid var(--line);color:#1e2c45}
+    .panel--dark{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.18)}
+    .panel h3{margin:0 0 8px}
+    .contact-list{margin:8px 0 0;padding:0;list-style:none}
+    .contact-list li+li{margin-top:6px}
+    @media (max-width: 900px){.cta-grid{grid-template-columns:1fr}}
+
+    footer{background:#0b203f;color:#dbe6ff}
+    .footer{padding:36px 0}
+    .foot-grid{display:grid;grid-template-columns:1fr .8fr .8fr;gap:20px}
+    .foot-grid h4{margin:0 0 10px;color:#fff}
+    .foot-grid a{color:#cbd9ff}
+    .foot-grid a:hover{color:#fff}
+    .copyright{border-top:1px solid rgba(255,255,255,.15);padding:14px 0;color:#cbd6f7;font-size:13px;margin-top:12px}
+    @media (max-width: 900px){.foot-grid{grid-template-columns:1fr 1fr}}
+    @media (max-width: 600px){.foot-grid{grid-template-columns:1fr}}
+
+    :focus-visible{outline:2px solid var(--gold-strong);outline-offset:2px}
+    @media (prefers-reduced-motion: reduce){*{animation:none !important;transition:none !important;scroll-behavior:auto !important}}
+  </style>
+</head>
+<body>
+  <!-- Header / Navigation (logo with fallback path) -->
+  <header class="header" role="banner">
+    <div class="container">
+      <nav class="nav" aria-label="Primary">
+        <a class="brand" href="aiken_sanders_homepage.html">
+          <img src="images/logo.png" onerror="this.onerror=null;this.src='/mnt/data/f587725d-4805-4b55-8894-3b0a2c479fa6.png'" alt="Aiken & Sanders Logo">
+        </a>
+        <button id="hamburger" class="hamburger" aria-expanded="false" aria-controls="menu" aria-label="Open menu">
+          <svg id="icon-bars" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6.5h18M3 12h18M3 17.5h18"/></svg>
+          <svg id="icon-close" class="hidden" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"/></svg>
+        </button>
+        <div id="menu" class="menu" role="navigation">
+          <a href="index.html">Home</a>
+          <div class="dropdown">
+            <a href="about_us.html">About</a>
+          </div>
+          <div class="dropdown">
+            <a href="#services">Services</a>
+            <div class="dropdown-menu">
+              <a href="audit_assurance.html">Assurance & Audits</a>
+              <a href="accounting_services.html">Accounting Services</a>
+              <a href="taxation_service.html">Taxation Services</a>
+            </div>
+          </div>
+          <a href="contact.html">Contact</a>
+          <a class="btn" href="contact.html">Get in Touch</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Mobile Menu Overlay -->
+  <div id="mobileMenu" class="menu-mobile" aria-hidden="true">
+    <div class="menu-panel" role="dialog" aria-modal="true" aria-label="Mobile navigation">
+      <div class="menu-header">
+        <img src="images/logo.png" onerror="this.onerror=null;this.src='/mnt/data/f587725d-4805-4b55-8894-3b0a2c479fa6.png'" alt="Aiken & Sanders">
+        <button class="close-menu" id="closeMenu" aria-label="Close menu">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"/></svg>
+        </button>
+      </div>
+      <div class="menu-mobile-nav">
+        <a href="index.html">Home</a>
+        <a href="about_us.html">About</a>
+        <div class="mobile-dropdown">
+          <a href="#services">Services</a>
+          <div class="mobile-dropdown-menu">
+            <a href="audit_assurance.html">Assurance & Audits</a>
+            <a href="accounting_services.html">Accounting Services</a>
+            <a href="taxation_service.html">Taxation Services</a>
+          </div>
+        </div>
+        <a href="contact.html">Contact</a>
+      </div>
+      <div class="menu-mobile-cta">
+        <a class="btn" href="contact.html">Get in Touch</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <div class="wrap">
+        <h1>Accounting Services</h1>
+        <p>Your trusted accounting partner — clear communication, practical guidance, and reliable delivery. We offer flexible on‑site and virtual options to keep your books current and useful.</p>
+        <div class="actions" style="display:flex;gap:12px;flex-wrap:wrap;margin-top:8px;justify-content:center">
+          <a class="btn" href="#acct">Explore Services</a>
+          <a class="btn btn--ghost" href="contact.html">Request a Consultation</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Overview -->
+  <section id="acct" class="section">
+    <div class="container">
+      <div class="split">
+        <div class="box">
+          <h2>Your trusted accounting partner</h2>
+          <p class="sub">Aiken & Sanders provides cost‑effective accounting solutions that help organizations turn information into action. Our dedicated professionals combine experience with modern tools to deliver timely communication and dependable results.</p>
+          <p class="sub">We support maintenance of <strong>general ledger</strong>, <strong>accounts payable</strong>, <strong>accounts receivable</strong>, <strong>financial records</strong>, and <strong>project accounting</strong> — focusing on accuracy, clarity, and on‑time reporting. Virtual accounting options are available when you need additional flexibility.</p>
+          <div class="chips" aria-label="Industries we specialize in">
+            <span class="chip">Tribal entities</span>
+            <span class="chip">Governmental agencies</span>
+            <span class="chip">Educational entities</span>
+            <span class="chip">Housing authorities</span>
+            <span class="chip">Not‑for‑profit organizations</span>
+          </div>
+        </div>
+        <figure class="media">
+          <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?q=80&w=1600&auto=format&fit=crop" alt="Team collaborating over financial statements and laptop">
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- Our Practice -->
+  <section id="practice" class="section" style="background:var(--blue-100)">
+    <div class="container">
+      <div class="split">
+        <figure class="media">
+          <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=1600&auto=format&fit=crop" alt="Modern workspace with accounting software">
+        </figure>
+        <div class="box">
+          <h2>Our practice</h2>
+          <p class="sub">We are a U.S.‑based CPA firm headquartered in <strong>Montesano, Washington</strong>, serving clients across the country. Whether you’re a public agency, a nonprofit, or a private enterprise, our services are highly customizable to your needs.</p>
+          <p class="sub">Our team emphasizes a collaborative approach — pairing seasoned professionals with secure, cloud‑based systems so you receive precise, timely financial information.</p>
+          <div style="margin-top:10px;display:flex;gap:10px;flex-wrap:wrap">
+            <a class="btn" href="#offerings">View Offerings</a>
+            <a class="btn btn--outline" href="#benefits">Why Outsource?</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Offerings -->
+  <section id="offerings" class="section">
+    <div class="container">
+      <h2>Accounting services we provide</h2>
+      <p class="sub">Flexible support that scales with your operations.</p>
+      <div class="cards">
+        <article class="card">
+          <h3>Virtual Accounting & Virtual CFO</h3>
+          <p>Day‑to‑day bookkeeping and CFO‑level insight without the full‑time cost — ideal for growing teams.</p>
+        </article>
+        <article class="card">
+          <h3>Accounting Software Implementation</h3>
+          <p>Selection, configuration, migration, and training so your system matches your workflows.</p>
+        </article>
+        <article class="card">
+          <h3>Cloud‑Based Accounting</h3>
+          <p>Secure, anywhere access to real‑time financial data and collaborative approvals.</p>
+        </article>
+        <article class="card">
+          <h3>General Ledger Reconstruction</h3>
+          <p>Clean‑up and rebuilds of historical data to restore accuracy and audit‑readiness.</p>
+        </article>
+        <article class="card">
+          <h3>Tax Services</h3>
+          <p>Coordination with our tax team for planning, filings, and compliance support.</p>
+        </article>
+        <article class="card">
+          <h3>Payroll Services</h3>
+          <p>Reliable processing, reporting, and year‑end forms tailored to your policies.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Benefits -->
+  <section id="benefits" class="section" style="background:var(--blue-100)">
+    <div class="container">
+      <h2>Benefits of outsourced accounting</h2>
+      <p class="sub">Cost‑effective, convenient, and built for consistency.</p>
+      <div class="benefits">
+        <div class="benefit">
+          <h4>Expert assistance</h4>
+          <p>We identify practical actions to remove inefficiencies and strengthen controls.</p>
+        </div>
+        <div class="benefit">
+          <h4>Superior planning</h4>
+          <p>Right‑sized scopes and realistic timelines that your team can depend on.</p>
+        </div>
+        <div class="benefit">
+          <h4>Accounting system management</h4>
+          <p>Advice on system configuration and changes that keep data accurate and useful.</p>
+        </div>
+        <div class="benefit">
+          <h4>Aligned to your goals</h4>
+          <p>Recommendations focused on the outcomes you care about — clarity, compliance, and insight.</p>
+        </div>
+        <div class="benefit">
+          <h4>Clear DOs and DON’Ts</h4>
+          <p>Straightforward guidance that helps your team avoid common pitfalls.</p>
+        </div>
+        <div class="benefit">
+          <h4>Virtual options</h4>
+          <p>Remote delivery and secure portals for document exchange and approvals.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience -->
+  <section id="experience" class="section">
+    <div class="container">
+      <div class="split">
+        <div class="box">
+          <h2>Technical experience you can count on</h2>
+          <p class="sub">Our advisors guide and recommend; management always retains control over policies and financial statements. With cross‑disciplinary experience in accounting, consulting, auditing, and bookkeeping, we deliver practical steps that move you forward.</p>
+          <p class="sub">You’ll work with a team that is professional, personable, and committed to open communication — the Aiken & Sanders way.</p>
+          <div style="margin-top:10px"><a class="btn" href="contact.html">Talk with our Accounting Team</a></div>
+        </div>
+        <figure class="media">
+          <img src="images/expert.jpg" alt="Advisor discussing options with client using a tablet">
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA / Contact -->
+  <section id="contact" class="cta-strip">
+    <div class="container">
+      <div class="cta-grid">
+        <div class="panel panel--dark">
+          <span class="ribbon" style="background:#FEB200">Get started with Aiken & Sanders</span>
+          <h3>Speak with our Accounting Services team</h3>
+          <ul class="contact-list">
+            <li><strong>Telephone:</strong> <a href="tel:13605333370" style="color:#fff">360‑533‑3370</a></li>
+            <li><strong>Fax:</strong> 360‑532‑7123</li>
+            <li><strong>Email:</strong> <a href="mailto:janet@aiken-sanders.com" style="color:#fff">janet@aiken-sanders.com</a></li>
+            <li><strong>Address:</strong> 324 S MAIN ST UNIT A, MONTESANO, WA 98563</li>
+          </ul>
+        </div>
+        <div class="panel panel--light">
+          <h3>Helpful resources</h3>
+          <p>Access newsletters, calculators, and useful links to support planning and compliance.</p>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:8px">
+            <a class="btn" href="#tools">Financial Tools</a>
+            <a class="btn" href="#news">Newsletters</a>
+            <a class="btn" href="#offerings">View Offerings</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer role="contentinfo">
+    <div class="container footer">
+      <div class="foot-grid">
+        <div>
+          <img src="images/logo-white.png" onerror="this.onerror=null;this.src='/mnt/data/f587725d-4805-4b55-8894-3b0a2c479fa6.png'" alt="Aiken & Sanders" style="height:46px;width:auto;margin-bottom:10px">
+          <p style="color:#cbd9ff">Dedicated to superior client service and guidance.</p>
+        </div>
+        <div>
+          <h4>Quick Links</h4>
+          <a href="#offerings">Services</a><br>
+          <a href="#acct">Overview</a><br>
+          <a href="#benefits">Why Outsource</a><br>
+          <a href="contact.html">Contact</a>
+        </div>
+        <div>
+          <h4>Contact</h4>
+          <p style="margin:0 0 8px">Aiken & Sanders, Inc. PS<br>324 S MAIN ST UNIT A<br>Montesano, WA 98563</p>
+          <a href="tel:13605333370">360‑533‑3370</a><br>
+          <span>Fax: 360‑532‑7123</span><br>
+          <a href="mailto:janet@aiken-sanders.com">janet@aiken-sanders.com</a>
+        </div>
+      </div>
+      <div class="copyright">© <span id="year"></span> Aiken & Sanders, Inc. PS — All rights reserved.</div>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Mobile menu functionality
+      const hamburger = document.getElementById('hamburger');
+      const iconBars = document.getElementById('icon-bars');
+      const iconClose = document.getElementById('icon-close');
+      const mobileMenu = document.getElementById('mobileMenu');
+      const closeMenu = document.getElementById('closeMenu');
+      const mobileDropdowns = document.querySelectorAll('.mobile-dropdown');
+      const focusableSelectors = 'a, button, input, [tabindex]:not([tabindex="-1"])';
+
+      const setExpanded = (state) => hamburger?.setAttribute('aria-expanded', String(state));
+      const toggleIcons = (open) => {
+        if(open){ iconBars.classList.add('hidden'); iconClose.classList.remove('hidden'); hamburger.setAttribute('aria-label','Close menu'); }
+        else { iconClose.classList.add('hidden'); iconBars.classList.remove('hidden'); hamburger.setAttribute('aria-label','Open menu'); }
+      };
+
+      const openMobile = () => {
+        mobileMenu.style.display = 'block';
+        requestAnimationFrame(()=>{
+          mobileMenu.classList.add('show');
+          setExpanded(true);
+          toggleIcons(true);
+          mobileMenu.setAttribute('aria-hidden','false');
+        });
+        document.body.style.overflow = 'hidden';
+      };
+      const closeMobile = () => {
+        mobileMenu.classList.remove('show');
+        setExpanded(false);
+        toggleIcons(false);
+        mobileMenu.setAttribute('aria-hidden','true');
+        setTimeout(()=>{ mobileMenu.style.display = 'none'; }, 300);
+        document.body.style.overflow = '';
+      };
+      hamburger?.addEventListener('click', () => {
+        if(mobileMenu.classList.contains('show')) closeMobile(); else openMobile();
+      });
+      closeMenu?.addEventListener('click', closeMobile);
+      mobileMenu?.addEventListener('click', (e)=>{ if(e.target === mobileMenu) closeMobile(); });
+      document.addEventListener('keydown', (e) => { if(e.key === 'Escape' && mobileMenu.classList.contains('show')) closeMobile(); });
+      mobileDropdowns.forEach(dd=>{
+        const link = dd.querySelector('> a');
+        link?.addEventListener('click', (e)=>{ e.preventDefault(); dd.classList.toggle('active'); });
+      });
+
+      // Focus first item when opened
+      const panel = document.querySelector('.menu-panel');
+      mobileMenu.addEventListener('transitionend', () => {
+        if(mobileMenu.classList.contains('show')){
+          const firstFocusable = panel?.querySelector(focusableSelectors);
+          firstFocusable && firstFocusable.focus();
+        }
+      });
+
+      // Set year
+      const y = document.getElementById('year');
+      if(y) y.textContent = new Date().getFullYear();
+    });
+  </script>
+</body>
+</html>

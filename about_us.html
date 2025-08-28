@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>About Us — Aiken & Sanders</title>
+  <meta name="description" content="Aiken & Sanders, Inc. PS — Rooted in trust, focused on your future. Learn about our firm, values, team approach, industries served, and commitment to client service." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --blue-900:#0a2342; /* deep hero blue */
+      --blue-800:#0f2f54; /* section blue */
+      --blue-100:#eef3f9;
+      --ink:#0e1a2b;       /* primary text */
+      --muted:#516381;     /* secondary text */
+      --gold:#FEB200;      /* brand gold */
+      --gold-strong:#FEB200;
+      --line:#e6edf5;      /* borders */
+      --white:#ffffff;
+      --shadow:0 10px 30px rgba(8,20,40,.08);
+      --radius:16px; --rsm:12px; --rlg:22px; --maxw:1200px;
+      --safe-top: env(safe-area-inset-top);
+      --safe-btm: env(safe-area-inset-bottom);
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,Helvetica,sans-serif;color:var(--ink);background:#fff;line-height:1.6}
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block;height:auto}
+    .container{max-width:var(--maxw);margin:0 auto;padding:0 20px}
+
+    /* Header / Nav */
+    header.header{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.95);backdrop-filter:saturate(140%) blur(10px);border-bottom:1px solid var(--line)}
+    .nav{display:flex;align-items:center;justify-content:space-between;padding:16px 0}
+    .brand{display:flex;align-items:center;gap:10px}
+    .brand img{height:56px;width:auto;object-fit:contain;max-width:220px}
+    .menu{display:flex;gap:20px;align-items:center}
+    .menu> a, .menu .dropdown> a{font-weight:600;color:#2a3e5e;font-size:15px;transition:color .3s}
+    .menu> a:hover, .menu .dropdown> a:hover{color:#000}
+    .dropdown{position:relative}
+    .dropdown> a{display:inline-flex;align-items:center;gap:4px}
+    .dropdown> a::after{content:'▼';font-size:10px;transition:transform .3s}
+    .dropdown:hover> a::after{transform:rotate(180deg)}
+    .dropdown-menu{position:absolute;top:100%;left:0;background:#fff;min-width:200px;border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,.12);border:1px solid var(--line);margin-top:8px;opacity:0;visibility:hidden;transform:translateY(-10px);transition:all .3s ease;z-index:1000}
+    .dropdown:hover .dropdown-menu{opacity:1;visibility:visible;transform:translateY(0)}
+    .dropdown-menu a{display:block;padding:10px 16px;color:#516381;font-size:14px;font-weight:500;transition:all .2s;border-bottom:1px solid rgba(230,237,245,.5)}
+    .dropdown-menu a:last-child{border-bottom:none}
+    .dropdown-menu a:hover{background:var(--blue-100);color:var(--blue-900);padding-left:20px}
+    .dropdown-menu a:first-child{border-radius:12px 12px 0 0}
+    .dropdown-menu a:last-child{border-radius:0 0 12px 12px}
+
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:10px 18px;border-radius:10px;border:1px solid var(--gold-strong);background:linear-gradient(180deg,#FEB200,var(--gold));font-weight:700;box-shadow:0 8px 20px rgba(254,178,0,.18);color:#000 !important;font-size:15px;white-space:nowrap;transition:transform .2s;text-align:center}
+    .btn:hover{transform:translateY(-2px);box-shadow:0 10px 25px rgba(254,178,0,.25)}
+    .btn--ghost{background:#fff;border-color:var(--gold-strong);color:#000 !important}
+    .btn--outline{background:#fff;border:2px solid var(--gold-strong);color:#000 !important;box-shadow:none;transition:all .3s ease}
+    .btn--outline:hover{background:var(--gold);transform:translateY(-2px);box-shadow:0 6px 16px rgba(254,178,0,.2)}
+
+    /* Mobile nav */
+    .hamburger{display:none;border:none;background:transparent;padding:4px;cursor:pointer;width:40px;height:40px;position:relative;margin-left:auto}
+    .hamburger svg{width:28px;height:28px;stroke:var(--ink);stroke-width:2.5;fill:none}
+    .hidden{display:none !important}
+    .menu-mobile{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.5);z-index:999;opacity:0;transition:opacity .3s ease}
+    .menu-mobile.show{opacity:1}
+    .menu-panel{position:fixed;top:0;left:-100%;width:80%;max-width:340px;height:100%;background:#fff;box-shadow:4px 0 20px rgba(0,0,0,.12);transition:left .3s ease;z-index:1000;overflow-y:auto;padding-bottom:var(--safe-btm)}
+    .menu-mobile.show .menu-panel{left:0}
+    .menu-header{display:flex;align-items:center;justify-content:space-between;padding:16px 20px; padding-top:calc(16px + var(--safe-top)); border-bottom:1px solid var(--line);background:var(--blue-100)}
+    .menu-header img{height:40px;width:auto}
+    .close-menu{background:transparent;border:none;cursor:pointer;padding:6px}
+    .close-menu svg{width:28px;height:28px;stroke:var(--ink);stroke-width:2.5;fill:none}
+    .menu-mobile-nav{padding:0}
+    .menu-mobile-nav> a, .menu-mobile-nav .mobile-dropdown> a{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;color:var(--ink);font-size:16px;font-weight:500;border-bottom:1px solid rgba(230,237,245,.5);transition:background .2s}
+    .menu-mobile-nav> a:hover, .menu-mobile-nav .mobile-dropdown> a:hover{background:var(--blue-100)}
+    .mobile-dropdown{position:relative}
+    .mobile-dropdown> a::after{content:'›';font-size:20px;transition:transform .3s}
+    .mobile-dropdown.active> a::after{transform:rotate(90deg)}
+    .mobile-dropdown-menu{display:none;background:#f8fafd}
+    .mobile-dropdown.active .mobile-dropdown-menu{display:block}
+    .mobile-dropdown-menu a{display:block;padding:12px 20px 12px 40px;color:#516381;font-size:15px;border-bottom:1px solid rgba(230,237,245,.3);transition:background .2s}
+    .mobile-dropdown-menu a:hover{background:#fff}
+    .menu-mobile-cta{padding:20px;border-top:1px solid var(--line);background:var(--blue-100)}
+    .menu-mobile-cta .btn{width:100%;justify-content:center;padding:14px;font-size:16px}
+
+    /* Responsive switch */
+    @media (max-width: 960px){
+      #menu{display:none}
+      .hamburger{display:inline-flex;align-items:center;justify-content:center}
+      .brand img{height:44px}
+      .nav{padding:12px 0}
+    }
+
+    /* Hero */
+    .hero{background:linear-gradient(165deg, rgba(10,35,66,.85), rgba(10,35,66,.55)), url('https://images.unsplash.com/photo-1523958203904-cdcb402031fd?q=80&w=1920&auto=format&fit=crop');background-size:cover;background-position:center;color:#fff;display:grid;place-items:center;min-height:420px}
+    .hero .wrap{display:flex;flex-direction:column;align-items:center;gap:12px;padding:86px 0 96px;text-align:center}
+    .hero h1{font-family:Merriweather, Georgia, serif;line-height:1.15;font-size:clamp(28px,4.2vw,44px);margin:0}
+    .hero p{max-width:80ch;opacity:.95;font-size:clamp(14px,2vw,18px);margin:0 auto}
+
+    /* Sections */
+    .section{padding:64px 0}
+    .section h2{font-family:Merriweather, Georgia, serif;margin:0 0 10px;color:#152239}
+    .sub{color:var(--muted);margin:0}
+
+    /* Split */
+    .split{display:grid;grid-template-columns:1.05fr .95fr;gap:18px;align-items:center}
+    .box{background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);padding:18px}
+    figure.media{border-radius:14px;overflow:hidden;border:1px solid var(--line);box-shadow:var(--shadow);margin:0}
+    figure.media img{width:100%;height:100%;object-fit:cover}
+    @media (max-width: 960px){.split{grid-template-columns:1fr}}
+
+    /* Values grid */
+    .values{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-top:14px}
+    .value{background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);padding:18px}
+    .value h3{margin:0 0 6px;font-size:18px}
+    .value p{margin:0;color:#5a6a82}
+    @media (max-width: 1024px){.values{grid-template-columns:repeat(2,1fr)}}
+    @media (max-width: 640px){.values{grid-template-columns:1fr}}
+
+    /* Number stats */
+    .stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-top:18px}
+    .stat{background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);padding:18px 20px;display:flex;flex-direction:column;align-items:flex-start}
+    .stat strong{display:block;font-size:22px;line-height:1.25;color:var(--blue-900);font-weight:800;overflow-wrap:anywhere;hyphens:auto}
+    .stat span{color:#5a6a82;font-size:14px;margin-top:6px}
+    @media (max-width: 1200px){.stats{grid-template-columns:repeat(3,1fr)}}
+    @media (max-width: 900px){.stats{grid-template-columns:repeat(2,1fr)}}
+    @media (max-width: 520px){.stats{grid-template-columns:1fr}}
+
+    /* Cards */
+    .cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:14px}
+    .card{background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);padding:18px}
+    .card h3{margin:0 0 6px;font-size:18px}
+    .card p{margin:0;color:#5a6a82}
+    @media (max-width: 1024px){.cards{grid-template-columns:repeat(2,1fr)}}
+    @media (max-width: 640px){.cards{grid-template-columns:1fr}}
+
+    /* CTA strip & footer */
+    .cta-strip{background:var(--blue-800);padding:40px 0;color:#fff}
+    .cta-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:20px}
+    .panel{border-radius:14px;padding:20px}
+    .panel--light{background:#f6f9ff;border:1px solid var(--line);color:#1e2c45}
+    .panel--dark{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.18)}
+    .panel h3{margin:0 0 8px}
+    .contact-list{margin:8px 0 0;padding:0;list-style:none}
+    .contact-list li+li{margin-top:6px}
+    @media (max-width: 900px){.cta-grid{grid-template-columns:1fr}}
+
+    footer{background:#0b203f;color:#dbe6ff}
+    .footer{padding:36px 0}
+    .foot-grid{display:grid;grid-template-columns:1fr .8fr .8fr;gap:20px}
+    .foot-grid h4{margin:0 0 10px;color:#fff}
+    .foot-grid a{color:#cbd9ff}
+    .foot-grid a:hover{color:#fff}
+    .copyright{border-top:1px solid rgba(255,255,255,.15);padding:14px 0;color:#cbd6f7;font-size:13px;margin-top:12px}
+    @media (max-width: 900px){.foot-grid{grid-template-columns:1fr 1fr}}
+    @media (max-width: 600px){.foot-grid{grid-template-columns:1fr}}
+
+    :focus-visible{outline:2px solid var(--gold-strong);outline-offset:2px}
+    @media (prefers-reduced-motion: reduce){*{animation:none !important;transition:none !important;scroll-behavior:auto !important}}
+  </style>
+</head>
+<body>
+  <!-- Header / Navigation -->
+  <header class="header" role="banner">
+    <div class="container">
+      <nav class="nav" aria-label="Primary">
+        <a class="brand" href="aiken_sanders_homepage.html">
+          <img src="images/logo.png" onerror="this.onerror=null;this.src='/mnt/data/f587725d-4805-4b55-8894-3b0a2c479fa6.png'" alt="Aiken & Sanders Logo">
+        </a>
+        <button id="hamburger" class="hamburger" aria-expanded="false" aria-controls="menu" aria-label="Open menu">
+          <svg id="icon-bars" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6.5h18M3 12h18M3 17.5h18"/></svg>
+          <svg id="icon-close" class="hidden" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"/></svg>
+        </button>
+        <div id="menu" class="menu" role="navigation">
+          <a href="index.html">Home</a>
+          <div class="dropdown">
+            <a href="about_us.html">About</a>
+            <div class="dropdown-menu">
+              <!-- optional anchors for on-page sections if desired -->
+              <!-- <a href="#profile">Firm Profile</a>
+              <a href="#values">Our Values</a>
+              <a href="#industries">Industries</a> -->
+            </div>
+          </div>
+          <div class="dropdown">
+            <a href="#services">Services</a>
+            <div class="dropdown-menu">
+              <a href="audit_assurance.html">Assurance & Audits</a>
+              <a href="accounting_services.html">Accounting Services</a>
+              <a href="taxation_service.html">Taxation Services</a>
+            </div>
+          </div>
+          <a href="contact_us.html">Contact</a>
+          <a class="btn" href="contact_us.html">Get in Touch</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Mobile Menu Overlay -->
+  <div id="mobileMenu" class="menu-mobile" aria-hidden="true">
+    <div class="menu-panel" role="dialog" aria-modal="true" aria-label="Mobile navigation">
+      <div class="menu-header">
+        <img src="images/logo.png" onerror="this.onerror=null;this.src='/mnt/data/f587725d-4805-4b55-8894-3b0a2c479fa6.png'" alt="Aiken & Sanders">
+        <button class="close-menu" id="closeMenu" aria-label="Close menu">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5l14 14M19 5L5 19"/></svg>
+        </button>
+      </div>
+      <div class="menu-mobile-nav">
+        <a href="index.html">Home</a>
+        <a href="about_us.html">About</a>
+        <div class="mobile-dropdown">
+          <a href="#services">Services</a>
+          <div class="mobile-dropdown-menu">
+            <a href="audit_assurance.html">Assurance & Audits</a>
+            <a href="accounting_services.html">Accounting Services</a>
+            <a href="taxation_service.html">Taxation Services</a>
+          </div>
+        </div>
+        <a href="contact_us.html">Contact</a>
+      </div>
+      <div class="menu-mobile-cta">
+        <a class="btn" href="contact_us.html">Get in Touch</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <div class="wrap">
+        <h1>About Aiken & Sanders</h1>
+        <p>Rooted in trust, focused on your future. We combine a traditional commitment to integrity with modern tools and a people‑first approach.</p>
+        <div class="actions" style="display:flex;gap:12px;flex-wrap:wrap;margin-top:8px;justify-content:center">
+          <a class="btn" href="#profile">Firm Profile</a>
+          <a class="btn btn--ghost" href="#contact">Talk to Our Team</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Firm Profile -->
+  <section id="profile" class="section">
+    <div class="container">
+      <div class="split">
+        <div class="box">
+          <h2>Firm profile</h2>
+          <p class="sub">Welcome and thank you for visiting Aiken & Sanders. Our website is designed to be a helpful resource for clients and visitors, reflecting our dedication to superior professional service and guidance. We highlight background information on our firm and the services we provide, and we curate practical tools such as informative articles, interactive calculators, and useful links.</p>
+          <p class="sub">We pride ourselves on being proactive and responsive to our clients’ inquiries and suggestions. Clear communication and dependable follow‑through are the hallmarks of how we work.</p>
+        </div>
+        <figure class="media">
+          <img src="https://images.unsplash.com/photo-1552581234-26160f608093?q=80&w=1600&auto=format&fit=crop" alt="Colleagues collaborating in office">
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- Values -->
+  <section id="values" class="section" style="background:var(--blue-100)">
+    <div class="container">
+      <h2>Our values</h2>
+      <p class="sub">A tradition of integrity, a culture of service, and a commitment to continuous improvement.</p>
+      <div class="values">
+        <div class="value"><h3>Integrity</h3><p>We do the right thing—every engagement, every time.</p></div>
+        <div class="value"><h3>Clarity</h3><p>We turn complexity into clear, practical guidance.</p></div>
+        <div class="value"><h3>Partnership</h3><p>We listen first, then work alongside you toward your goals.</p></div>
+        <div class="value"><h3>Excellence</h3><p>Quality processes and disciplined execution you can rely on.</p></div>
+      </div>
+
+      <div class="stats">
+        <div class="stat"><strong>Client‑focused</strong><span>Proactive, responsive service</span></div>
+        <div class="stat"><strong>Technology‑enabled</strong><span>Secure, modern systems</span></div>
+        <div class="stat"><strong>Experienced</strong><span>Seasoned professionals</span></div>
+        <div class="stat"><strong>Transparent</strong><span>Open communication</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How we work -->
+  <section id="approach" class="section">
+    <div class="container">
+      <div class="split">
+        <figure class="media">
+          <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?q=80&w=1600&auto=format&fit=crop" alt="Planning session with documents and laptop">
+        </figure>
+        <div class="box">
+          <h2>How we work</h2>
+          <p class="sub"><strong>Listen.</strong> We begin by understanding your organization, objectives, and constraints.
+          <br><strong>Plan.</strong> We align the scope, timeline, and communications so everyone knows what’s next.
+          <br><strong>Deliver.</strong> We execute with discipline, using technology to drive efficiency and quality.
+          <br><strong>Support.</strong> We stay available, answer questions, and help you prepare for what’s ahead.</p>
+          <div style="margin-top:10px"><a class="btn" href="#contact">Start the conversation</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Industries we serve -->
+  <section id="industries" class="section" style="background:#fff">
+    <div class="container">
+      <h2>Industries we serve</h2>
+      <p class="sub">We tailor our services to the needs of each client.</p>
+      <div class="cards">
+        <div class="card"><h3>Tribal entities</h3><p>Respectful, knowledgeable support for unique regulatory environments.</p></div>
+        <div class="card"><h3>Governmental agencies</h3><p>Compliance‑driven work with clear documentation and timelines.</p></div>
+        <div class="card"><h3>Educational entities</h3><p>Practical guidance for schools and districts.</p></div>
+        <div class="card"><h3>Housing authorities</h3><p>Support for complex funding and reporting requirements.</p></div>
+        <div class="card"><h3>Not‑for‑profits</h3><p>Transparency and stewardship to advance your mission.</p></div>
+        <div class="card"><h3>Businesses</h3><p>From emerging to established—accounting, tax, and advisory.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Commitment / Credentials -->
+  <section id="credentials" class="section" style="background:var(--blue-100)">
+    <div class="container">
+      <div class="split">
+        <div class="box">
+          <h2>Our commitment</h2>
+          <p class="sub">We invest in training, quality control, and secure systems so our clients can depend on consistent, reliable results. Confidentiality and professional ethics guide every decision we make.</p>
+          <ul class="sub" style="margin:12px 0 0 18px">
+            <li>Licensed professionals with ongoing education</li>
+            <li>Document security and privacy best practices</li>
+            <li>Structured reviews for accuracy and clarity</li>
+            <li>Timely, proactive communication</li>
+          </ul>
+        </div>
+        <figure class="media">
+          <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=1600&auto=format&fit=crop" alt="Certificate and book symbolizing professional standards">
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA / Contact -->
+  <section id="contact" class="cta-strip">
+    <div class="container">
+      <div class="cta-grid">
+        <div class="panel panel--dark">
+          <span class="ribbon" style="background:#FEB200">Get in touch</span>
+          <h3>We’d love to hear from you</h3>
+          <ul class="contact-list">
+            <li><strong>Telephone:</strong> <a href="tel:13605333370" style="color:#fff">360‑533‑3370</a></li>
+            <li><strong>Fax:</strong> 360‑532‑7123</li>
+            <li><strong>Email:</strong> <a href="mailto:janet@aiken-sanders.com" style="color:#fff">janet@aiken-sanders.com</a></li>
+            <li><strong>Address:</strong> 324 S MAIN ST UNIT A, MONTESANO, WA 98563</li>
+          </ul>
+        </div>
+        <div class="panel panel--light">
+          <h3>Explore resources</h3>
+          <p>Newsletters, calculators, and helpful links designed for clients and visitors.</p>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:8px">
+            <a class="btn" href="#tools">Financial Tools</a>
+            <a class="btn" href="#news">Newsletters</a>
+            <a class="btn" href="#industries">Industries We Serve</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer role="contentinfo">
+    <div class="container footer">
+      <div class="foot-grid">
+        <div>
+          <img src="images/logo.png" onerror="this.onerror=null;this.src='/mnt/data/f587725d-4805-4b55-8894-3b0a2c479fa6.png'" alt="Aiken & Sanders" style="height:46px;width:auto;margin-bottom:10px">
+          <p style="color:#cbd9ff">Dedicated to superior client service and guidance.</p>
+        </div>
+        <div>
+          <h4>Quick Links</h4>
+          <a href="#profile">Firm Profile</a><br>
+          <a href="#values">Our Values</a><br>
+          <a href="#industries">Industries</a><br>
+          <a href="#contact">Contact</a>
+        </div>
+        <div>
+          <h4>Contact</h4>
+          <p style="margin:0 0 8px">Aiken & Sanders, Inc. PS<br>324 S MAIN ST UNIT A<br>Montesano, WA 98563</p>
+          <a href="tel:13605333370">360‑533‑3370</a><br>
+          <span>Fax: 360‑532‑7123</span><br>
+          <a href="mailto:janet@aiken-sanders.com">janet@aiken-sanders.com</a>
+        </div>
+      </div>
+      <div class="copyright">© <span id="year"></span> Aiken & Sanders, Inc. PS — All rights reserved.</div>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      // Mobile menu functionality
+      const hamburger = document.getElementById('hamburger');
+      const iconBars = document.getElementById('icon-bars');
+      const iconClose = document.getElementById('icon-close');
+      const mobileMenu = document.getElementById('mobileMenu');
+      const closeMenu = document.getElementById('closeMenu');
+      const mobileDropdowns = document.querySelectorAll('.mobile-dropdown');
+      const focusableSelectors = 'a, button, input, [tabindex]:not([tabindex="-1"])';
+
+      const setExpanded = (state) => hamburger?.setAttribute('aria-expanded', String(state));
+      const toggleIcons = (open) => {
+        if(open){ iconBars.classList.add('hidden'); iconClose.classList.remove('hidden'); hamburger.setAttribute('aria-label','Close menu'); }
+        else { iconClose.classList.add('hidden'); iconBars.classList.remove('hidden'); hamburger.setAttribute('aria-label','Open menu'); }
+      };
+
+      const openMobile = () => {
+        mobileMenu.style.display = 'block';
+        requestAnimationFrame(()=>{
+          mobileMenu.classList.add('show');
+          setExpanded(true);
+          toggleIcons(true);
+          mobileMenu.setAttribute('aria-hidden','false');
+        });
+        document.body.style.overflow = 'hidden';
+      };
+      const closeMobile = () => {
+        mobileMenu.classList.remove('show');
+        setExpanded(false);
+        toggleIcons(false);
+        mobileMenu.setAttribute('aria-hidden','true');
+        setTimeout(()=>{ mobileMenu.style.display = 'none'; }, 300);
+        document.body.style.overflow = '';
+      };
+      hamburger?.addEventListener('click', () => {
+        if(mobileMenu.classList.contains('show')) closeMobile(); else openMobile();
+      });
+      closeMenu?.addEventListener('click', closeMobile);
+      mobileMenu?.addEventListener('click', (e)=>{ if(e.target === mobileMenu) closeMobile(); });
+      document.addEventListener('keydown', (e) => { if(e.key === 'Escape' && mobileMenu.classList.contains('show')) closeMobile(); });
+      mobileDropdowns.forEach(dd=>{
+        const link = dd.querySelector('> a');
+        link?.addEventListener('click', (e)=>{ e.preventDefault(); dd.classList.toggle('active'); });
+      });
+
+      // Focus first item when opened
+      const panel = document.querySelector('.menu-panel');
+      mobileMenu.addEventListener('transitionend', () => {
+        if(mobileMenu.classList.contains('show')){
+          const firstFocusable = panel?.querySelector(focusableSelectors);
+          firstFocusable && firstFocusable.focus();
+        }
+      });
+
+      // Set year
+      const y = document.getElementById('year');
+      if(y) y.textContent = new Date().getFullYear();
+    });
+  </script>
+</body>
+</html>

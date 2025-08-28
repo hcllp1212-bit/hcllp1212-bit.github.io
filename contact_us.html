@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contact Us — Aiken & Sanders</title>
+  <meta name="description" content="Get in touch with Aiken & Sanders, Inc. PS. Phone, email, address, and a secure inquiry form." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --blue-900:#0a2342; /* deep hero blue */
+      --blue-800:#0f2f54; /* section blue */
+      --blue-100:#eef3f9;
+      --ink:#0e1a2b;       /* primary text */
+      --muted:#516381;     /* secondary text */
+      --gold:#FEB200;      /* brand gold */
+      --gold-strong:#FEB200;
+      --line:#e6edf5;      /* borders */
+      --white:#ffffff;
+      --shadow:0 10px 30px rgba(8,20,40,.08);
+      --radius:16px; --rsm:12px; --rlg:22px; --maxw:1200px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,Helvetica,sans-serif;color:var(--ink);background:#fff;line-height:1.6}
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+    .container{max-width:var(--maxw);margin:0 auto;padding:0 20px}
+
+    /* Header / Nav (same as other pages) */
+    header.header{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.95);backdrop-filter:saturate(140%) blur(10px);border-bottom:1px solid var(--line)}
+    .nav{display:flex;align-items:center;justify-content:space-between;padding:16px 0}
+    .brand{display:flex;align-items:center;gap:10px}
+    .brand img{height:56px;width:auto;object-fit:contain;max-width:220px}
+    .menu{display:flex;gap:20px;align-items:center}
+    .menu> a, .menu .dropdown> a{font-weight:600;color:#2a3e5e;font-size:15px;transition:color .3s}
+    .menu> a:hover, .menu .dropdown> a:hover{color:#000}
+    .dropdown{position:relative}
+    .dropdown> a{display:inline-flex;align-items:center;gap:4px}
+    .dropdown> a::after{content:'▼';font-size:10px;transition:transform .3s}
+    .dropdown:hover> a::after{transform:rotate(180deg)}
+    .dropdown-menu{position:absolute;top:100%;left:0;background:#fff;min-width:200px;border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,.12);border:1px solid var(--line);margin-top:8px;opacity:0;visibility:hidden;transform:translateY(-10px);transition:all .3s ease;z-index:1000}
+    .dropdown:hover .dropdown-menu{opacity:1;visibility:visible;transform:translateY(0)}
+    .dropdown-menu a{display:block;padding:10px 16px;color:#516381;font-size:14px;font-weight:500;transition:all .2s;border-bottom:1px solid rgba(230,237,245,.5)}
+    .dropdown-menu a:last-child{border-bottom:none}
+    .dropdown-menu a:hover{background:var(--blue-100);color:var(--blue-900);padding-left:20px}
+    .dropdown-menu a:first-child{border-radius:12px 12px 0 0}
+    .dropdown-menu a:last-child{border-radius:0 0 12px 12px}
+
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:10px 18px;border-radius:10px;border:1px solid var(--gold-strong);background:linear-gradient(180deg,#FEB200,var(--gold));font-weight:700;box-shadow:0 8px 20px rgba(254,178,0,.18);color:#000 !important;font-size:15px;white-space:nowrap;transition:transform .2s;text-align:center}
+    .btn:hover{transform:translateY(-2px);box-shadow:0 10px 25px rgba(254,178,0,.25)}
+    .btn--ghost{background:#fff;border-color:var(--gold-strong);color:#000 !important}
+
+    /* Mobile nav */
+    .hamburger{display:none;border:none;background:transparent;padding:4px;cursor:pointer;width:32px;height:32px;position:relative;margin-left:auto}
+    .hamburger span{display:block;width:24px;height:2px;background:var(--ink);margin:5px 0;transition:all .3s ease}
+    .hamburger.active span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+    .hamburger.active span:nth-child(2){opacity:0}
+    .hamburger.active span:nth-child(3){transform:rotate(-45deg) translate(7px,-6px)}
+    .menu-mobile{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.5);z-index:999;opacity:0;transition:opacity .3s ease}
+    .menu-mobile.show{opacity:1}
+    .menu-panel{position:fixed;top:0;left:-100%;width:80%;max-width:320px;height:100%;background:#fff;box-shadow:4px 0 20px rgba(0,0,0,.1);transition:left .3s ease;z-index:1000;overflow-y:auto}
+    .menu-mobile.show .menu-panel{left:0}
+    .menu-header{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;border-bottom:1px solid var(--line);background:var(--blue-100)}
+    .menu-header img{height:40px;width:auto}
+    .close-menu{background:transparent;border:none;font-size:24px;cursor:pointer;padding:4px;color:var(--ink)}
+    .menu-mobile-nav> a, .menu-mobile-nav .mobile-dropdown> a{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;color:var(--ink);font-size:16px;font-weight:500;border-bottom:1px solid rgba(230,237,245,.5);transition:background .2s}
+    .mobile-dropdown> a::after{content:'›';font-size:20px;transition:transform .3s}
+    .mobile-dropdown.active> a::after{transform:rotate(90deg)}
+    .mobile-dropdown-menu{display:none;background:#f8fafd}
+    .mobile-dropdown.active .mobile-dropdown-menu{display:block}
+    .mobile-dropdown-menu a{display:block;padding:12px 20px 12px 40px;color:#516381;font-size:15px;border-bottom:1px solid rgba(230,237,245,.3);transition:background .2s}
+    .menu-mobile-cta{padding:20px;border-top:1px solid var(--line);background:var(--blue-100)}
+    .menu-mobile-cta .btn{width:100%;justify-content:center;padding:14px;font-size:16px}
+
+    /* Hero */
+    .hero{background:linear-gradient(165deg, rgba(10,35,66,.85), rgba(10,35,66,.55)), url('https://images.unsplash.com/photo-1523958203904-cdcb402031fd?q=80&w=1920&auto=format&fit=crop');background-size:cover;background-position:center;color:#fff;display:grid;place-items:center;min-height:380px}
+    .hero .wrap{display:flex;flex-direction:column;align-items:center;gap:12px;padding:72px 0 82px;text-align:center}
+    .hero h1{font-family:Merriweather, Georgia, serif;line-height:1.15;font-size:clamp(28px,4.2vw,44px);margin:0}
+    .hero p{max-width:80ch;opacity:.95;font-size:clamp(14px,2vw,18px);margin:0 auto}
+
+    /* Section base */
+    .section{padding:64px 0}
+    .section h2{font-family:Merriweather, Georgia, serif;margin:0 0 10px;color:#152239}
+    .sub{color:var(--muted);margin:0}
+
+    /* Contact layout */
+    .contact-wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:18px;align-items:start;margin-top:18px}
+    .panel{background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);padding:18px}
+    .info li{margin:6px 0}
+
+    /* Form styles */
+    form .row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+    form .full{grid-column:1/-1}
+    label{display:block;font-weight:600;margin:6px 0}
+    input, select, textarea{width:100%;padding:12px 12px;border:1px solid var(--line);border-radius:10px;background:#fff;color:var(--ink);font-size:15px}
+    textarea{min-height:140px;resize:vertical}
+    input:focus, textarea:focus, select:focus{outline:2px solid var(--gold-strong);outline-offset:1px}
+    .form-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+    .form-status{margin-top:10px;font-size:14px}
+    .ok{color:#0f7b2e}
+    .err{color:#9f1d1d}
+
+    @media (max-width: 980px){
+      .menu{display:none}
+      .hamburger{display:block}
+      .brand img{height:45px;max-width:180px}
+      .contact-wrap{grid-template-columns:1fr}
+      form .row{grid-template-columns:1fr}
+    }
+
+    /* Map */
+    .map{border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:var(--shadow)}
+
+    /* CTA strip & footer */
+    .cta-strip{background:var(--blue-800);padding:40px 0;color:#fff}
+    .cta-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:20px}
+    .panel--light{background:#f6f9ff;border:1px solid var(--line);color:#1e2c45}
+    .panel--dark{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.18)}
+    footer{background:#0b203f;color:#dbe6ff}
+    .footer{padding:36px 0}
+    .foot-grid{display:grid;grid-template-columns:1fr .8fr .8fr;gap:20px}
+    .foot-grid h4{margin:0 0 10px;color:#fff}
+    .foot-grid a{color:#cbd9ff}
+    .foot-grid a:hover{color:#fff}
+    .copyright{border-top:1px solid rgba(255,255,255,.15);padding:14px 0;color:#cbd6f7;font-size:13px;margin-top:12px}
+    @media (max-width: 900px){.cta-grid{grid-template-columns:1fr}.foot-grid{grid-template-columns:1fr 1fr}}
+    @media (max-width: 600px){.foot-grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+  <!-- Header / Navigation -->
+  <header class="header" role="banner">
+    <div class="container">
+      <nav class="nav" aria-label="Primary">
+        <a class="brand" href="#home">
+          <img src="images/logo.png" onerror="this.onerror=null;this.src='/mnt/data/f587725d-4805-4b55-8894-3b0a2c479fa6.png'" alt="Aiken & Sanders Logo">
+        </a>
+        <button id="hamburger" class="hamburger" aria-expanded="false" aria-controls="menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <div id="menu" class="menu" role="navigation">
+          <a href="index.html">Home</a>
+          <div class="dropdown">
+            <a href="about_us.html">About</a>
+            <!-- <div class="dropdown-menu">
+              <a href="#profile">Firm Profile</a>
+              <a href="#team">Our Team</a>
+              <a href="#values">Why Choose Us</a>
+            </div> -->
+          </div>
+          <div class="dropdown">
+            <a href="#services">Services</a>
+            <div class="dropdown-menu">
+              <a href="audit_assurance.html">Assurance & Audits</a>
+              <a href="accounting_services.html">Accounting Services</a>
+              <a href="taxation_service.html">Taxation Services</a>
+              <!-- <a href="#tech">Information Technology</a> -->
+            </div>
+          </div>
+          <!-- <div class="dropdown">
+            <a href="#resources">Resources</a>
+            <div class="dropdown-menu">
+              <a href="#news">Newsletters</a>
+              <a href="#tools">Financial Tools</a>
+              <a href="#links">Useful Links</a>
+              <a href="#center">Info Center</a>
+            </div>
+          </div> -->
+          <a href="contact_us.html">Contact</a>
+          <a class="btn" href="contact_us.html">Get in Touch</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Mobile Menu Overlay -->
+  <div id="mobileMenu" class="menu-mobile">
+    <div class="menu-panel">
+      <div class="menu-header">
+        <img src="images/logo.png" onerror="this.onerror=null;this.src='/mnt/data/f587725d-4805-4b55-8894-3b0a2c479fa6.png'" alt="Aiken & Sanders">
+        <button class="close-menu" id="closeMenu">&times;</button>
+      </div>
+      <div class="menu-mobile-nav">
+        <a href="index.html">Home</a>
+        <div class="mobile-dropdown">
+          <a href="#about">About</a>
+          <div class="mobile-dropdown-menu">
+            <a href="#profile">Firm Profile</a>
+            <a href="#team">Our Team</a>
+            <a href="#values">Why Choose Us</a>
+          </div>
+        </div>
+        <div class="mobile-dropdown">
+          <a href="#services">Services</a>
+          <div class="mobile-dropdown-menu">
+            <a href="#audit">Assurance & Audits</a>
+            <a href="#acct">Accounting & Advisory</a>
+            <a href="#tax">Taxation Services</a>
+            <a href="#tech">Information Technology</a>
+          </div>
+        </div>
+        <!-- <div class="mobile-dropdown">
+          <a href="#resources">Resources</a>
+          <div class="mobile-dropdown-menu">
+            <a href="#news">Newsletters</a>
+            <a href="#tools">Financial Tools</a>
+            <a href="#links">Useful Links</a>
+            <a href="#center">Info Center</a>
+          </div>
+        </div> -->
+        <a href="#contact">Contact</a>
+      </div>
+      <div class="menu-mobile-cta">
+        <a class="btn" href="#contact">Get in Touch</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <div class="wrap">
+        <h1>Contact Aiken & Sanders</h1>
+        <p>We’re here to help. Call, email, or send us a message and our team will get back to you promptly.</p>
+        <div class="actions" style="display:flex;gap:12px;flex-wrap:wrap;margin-top:8px;justify-content:center">
+          <a class="btn" href="#contact-form">Send a Message</a>
+          <a class="btn btn--ghost" href="tel:13605333370">Call 360‑533‑3370</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="section" id="contact-details">
+    <div class="container">
+      <h2>How to reach us</h2>
+      <p class="sub">Aiken & Sanders, Inc. PS — we value clear, responsive communication.</p>
+
+      <div class="contact-wrap">
+        <!-- Form -->
+        <div class="panel">
+          <h3 id="contact-form">Send us a message</h3>
+          <form id="form" novalidate>
+            <div class="row">
+              <div>
+                <label for="name">Full Name *</label>
+                <input id="name" name="name" type="text" autocomplete="name" required />
+              </div>
+              <div>
+                <label for="email">Email *</label>
+                <input id="email" name="email" type="email" autocomplete="email" required />
+              </div>
+              <div>
+                <label for="phone">Phone</label>
+                <input id="phone" name="phone" type="tel" autocomplete="tel" />
+              </div>
+              <div>
+                <label for="topic">Topic</label>
+                <select id="topic" name="topic">
+                  <option value="General">General</option>
+                  <option value="Audit & Assurance">Audit & Assurance</option>
+                  <option value="Accounting">Accounting</option>
+                  <option value="Taxation">Taxation</option>
+                  <option value="Technology">Information Technology</option>
+                </select>
+              </div>
+              <div class="full">
+                <label for="subject">Subject *</label>
+                <input id="subject" name="subject" type="text" required />
+              </div>
+              <div class="full">
+                <label for="message">Message *</label>
+                <textarea id="message" name="message" required></textarea>
+              </div>
+            </div>
+            <div class="form-actions">
+              <button class="btn" type="submit">Submit</button>
+              <button class="btn btn--ghost" type="reset">Reset</button>
+            </div>
+            <div id="status" class="form-status" aria-live="polite"></div>
+          </form>
+        </div>
+
+        <!-- Contact Info -->
+        <div class="panel">
+          <h3>Office information</h3>
+          <ul class="info" style="list-style:none;padding:0;margin:10px 0 0">
+            <li><strong>Firm:</strong> Aiken & Sanders, Inc. PS</li>
+            <li><strong>Address:</strong> 324 S MAIN ST UNIT A, MONTESANO, WA 98563</li>
+            <li><strong>Telephone:</strong> <a href="tel:13605333370">360‑533‑3370</a></li>
+            <li><strong>Fax:</strong> 360‑532‑7123</li>
+            <li><strong>Email:</strong> <a href="mailto:janet@aiken-sanders.com">janet@aiken-sanders.com</a></li>
+          </ul>
+
+          <div class="map" style="margin-top:14px">
+            <iframe title="Map: Aiken & Sanders, Montesano WA" width="100%" height="280" style="border:0" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=324+S+MAIN+ST+UNIT+A,+MONTESANO,+WA+98563&output=embed"></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA / Footer -->
+  <section class="cta-strip">
+    <div class="container">
+      <div class="cta-grid">
+        <div class="panel panel--dark">
+          <span class="ribbon" style="background:#FEB200">Prefer to talk?</span>
+          <h3>Call our team at 360‑533‑3370</h3>
+          <p>We’re happy to answer questions and help you plan next steps.</p>
+        </div>
+        <div class="panel panel--light">
+          <h3>Quick links</h3>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:8px">
+            <a class="btn" href="#form">Send Message</a>
+            <a class="btn" href="mailto:janet@aiken-sanders.com">Email Us</a>
+            <a class="btn" href="tel:13605333370">Call Now</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer role="contentinfo">
+    <div class="container footer">
+      <div class="foot-grid">
+        <div>
+          <img src="images/logo-white.png" onerror="this.onerror=null;this.src='/mnt/data/f587725d-4805-4b55-8894-3b0a2c479fa6.png'" alt="Aiken & Sanders" style="height:46px;width:auto;margin-bottom:10px">
+          <p style="color:#cbd9ff">Dedicated to superior client service and guidance.</p>
+        </div>
+        <div>
+          <h4>Quick Links</h4>
+          <a href="#contact-details">Contact Details</a><br>
+          <a href="#form">Contact Form</a><br>
+          <a href="#">Services</a><br>
+        </div>
+        <div>
+          <h4>Contact</h4>
+          <p style="margin:0 0 8px">Aiken & Sanders, Inc. PS<br>324 S MAIN ST UNIT A<br>Montesano, WA 98563</p>
+          <a href="tel:13605333370">360‑533‑3370</a><br>
+          <span>Fax: 360‑532‑7123</span><br>
+          <a href="mailto:janet@aiken-sanders.com">janet@aiken-sanders.com</a>
+        </div>
+      </div>
+      <div class="copyright">© <span id="year"></span> Aiken & Sanders, Inc. PS — All rights reserved.</div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile menu
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const closeMenu = document.getElementById('closeMenu');
+    const mobileDropdowns = document.querySelectorAll('.mobile-dropdown');
+
+    const openMobile = () => {
+      mobileMenu.style.display = 'block';
+      requestAnimationFrame(()=>{
+        mobileMenu.classList.add('show');
+        hamburger.classList.add('active');
+      });
+      document.body.style.overflow = 'hidden';
+    };
+    const closeMobile = () => {
+      mobileMenu.classList.remove('show');
+      hamburger.classList.remove('active');
+      setTimeout(()=>{ mobileMenu.style.display = 'none'; }, 300);
+      document.body.style.overflow = '';
+    };
+    hamburger?.addEventListener('click', openMobile);
+    closeMenu?.addEventListener('click', closeMobile);
+    mobileMenu?.addEventListener('click', (e)=>{ if(e.target === mobileMenu) closeMobile(); });
+    mobileDropdowns.forEach(dd=>{
+      const link = dd.querySelector('> a');
+      link?.addEventListener('click', (e)=>{ e.preventDefault(); dd.classList.toggle('active'); });
+    });
+
+    // Form handling
+    const form = document.getElementById('form');
+    const status = document.getElementById('status');
+    function isValidEmail(v){return /\S+@\S+\.\S+/.test(v)}
+    form?.addEventListener('submit', (e)=>{
+      e.preventDefault();
+      status.textContent = '';
+      const data = Object.fromEntries(new FormData(form).entries());
+      const missing = [];
+      if(!data.name) missing.push('Name');
+      if(!data.email || !isValidEmail(data.email)) missing.push('Valid Email');
+      if(!data.subject) missing.push('Subject');
+      if(!data.message) missing.push('Message');
+      if(missing.length){
+        status.className = 'form-status err';
+        status.textContent = 'Please provide: ' + missing.join(', ') + '.';
+        return;
+      }
+      // Build mailto as a fallback client-side send
+      const mailto = `mailto:janet@aiken-sanders.com?subject=${encodeURIComponent('Website Inquiry — '+data.subject)}&body=${encodeURIComponent(`Name: ${data.name}\nEmail: ${data.email}\nPhone: ${data.phone||''}\nTopic: ${data.topic||'General'}\n\nMessage:\n${data.message}`)}`;
+      window.location.href = mailto;
+      status.className = 'form-status ok';
+      status.textContent = 'Thanks! Your email draft has opened in your mail app.';
+      form.reset();
+    });
+
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
