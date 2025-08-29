@@ -22,291 +22,117 @@
       --white:#ffffff;
       --shadow:0 10px 30px rgba(8,20,40,.08);
       --radius:16px; --rsm:12px; --rlg:22px; --maxw:1200px;
+      --safe-top: env(safe-area-inset-top);
+      --safe-btm: env(safe-area-inset-bottom);
     }
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
     body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,Helvetica,sans-serif;color:var(--ink);background:#fff;line-height:1.6}
     a{color:inherit;text-decoration:none}
-    img{max-width:100%;display:block}
+    img{max-width:100%;display:block;height:auto}
     .container{max-width:var(--maxw);margin:0 auto;padding:0 20px}
 
-    /* Topbar */
-    .topbar{background:#f7fbff;border-bottom:1px solid var(--line);font-size:13px;color:#2d4265}
-    .topbar .row{display:flex;align-items:center;gap:16px;justify-content:space-between;padding:6px 0}
-    .topbar .links{display:flex;gap:14px;flex-wrap:wrap}
-    .topbar .links a{opacity:.9}
-    .chip{display:inline-block;padding:6px 10px;border-radius:999px;border:1px solid #d8e5f6;background:#fff;font-weight:600}
-
-    /* Header / Nav - Updated with Dropdowns */
+    /* Header / Nav */
     header.header{position:sticky;top:0;z-index:40;background:rgba(255,255,255,.95);backdrop-filter:saturate(140%) blur(10px);border-bottom:1px solid var(--line)}
     .nav{display:flex;align-items:center;justify-content:space-between;padding:16px 0}
     .brand{display:flex;align-items:center;gap:10px}
-    .brand img{height:56px;width:auto;object-fit:contain;max-width:220px} /* Increased logo size */
-    .spacer{flex:1}
-    .menu{display:flex;gap:20px;align-items:center} /* Adjusted gap */
-    .menu > a, .menu .dropdown > a{font-weight:600;color:#2a3e5e;font-size:15px;transition:color 0.3s} /* Slightly larger font */
-    .menu > a:hover, .menu .dropdown > a:hover{color:#000}
-    
-    /* Dropdown Styles */
+    .brand img{height:56px;width:auto;object-fit:contain;max-width:220px}
+    .menu{display:flex;gap:20px;align-items:center}
+    .menu> a, .menu .dropdown> a{font-weight:600;color:#2a3e5e;font-size:15px;transition:color .3s}
+    .menu> a:hover, .menu .dropdown> a:hover{color:#000}
+
     .dropdown{position:relative}
-    .dropdown > a{display:inline-flex;align-items:center;gap:4px}
-    .dropdown > a::after{content:'▼';font-size:10px;transition:transform 0.3s}
-    .dropdown:hover > a::after{transform:rotate(180deg)}
-    
-    .dropdown-menu{
-      position:absolute;
-      top:100%;
-      left:0;
-      background:#fff;
-      min-width:200px;
-      border-radius:12px;
-      box-shadow:0 8px 24px rgba(0,0,0,.12);
-      border:1px solid var(--line);
-      margin-top:8px;
-      opacity:0;
-      visibility:hidden;
-      transform:translateY(-10px);
-      transition:all 0.3s ease;
-      z-index:1000;
-    }
-    
-    .dropdown:hover .dropdown-menu{
-      opacity:1;
-      visibility:visible;
-      transform:translateY(0);
-    }
-    
-    .dropdown-menu a{
-      display:block;
-      padding:10px 16px;
-      color:#516381;
-      font-size:14px;
-      font-weight:500;
-      transition:all 0.2s;
-      border-bottom:1px solid rgba(230,237,245,.5);
-    }
-    
+    .dropdown> a{display:inline-flex;align-items:center;gap:4px}
+    .dropdown> a::after{content:'▼';font-size:10px;transition:transform .3s}
+    .dropdown:hover> a::after{transform:rotate(180deg)}
+    .dropdown-menu{position:absolute;top:100%;left:0;background:#fff;min-width:200px;border-radius:12px;box-shadow:0 8px 24px rgba(0,0,0,.12);border:1px solid var(--line);margin-top:8px;opacity:0;visibility:hidden;transform:translateY(-10px);transition:all .3s ease;z-index:1000}
+    .dropdown:hover .dropdown-menu{opacity:1;visibility:visible;transform:translateY(0)}
+    .dropdown-menu a{display:block;padding:10px 16px;color:#516381;font-size:14px;font-weight:500;transition:all .2s;border-bottom:1px solid rgba(230,237,245,.5)}
     .dropdown-menu a:last-child{border-bottom:none}
-    .dropdown-menu a:hover{
-      background:var(--blue-100);
-      color:var(--blue-900);
-      padding-left:20px;
-    }
+    .dropdown-menu a:hover{background:var(--blue-100);color:var(--blue-900);padding-left:20px}
     .dropdown-menu a:first-child{border-radius:12px 12px 0 0}
     .dropdown-menu a:last-child{border-radius:0 0 12px 12px}
-    
-    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:10px 18px;border-radius:10px;border:1px solid var(--gold-strong);background:linear-gradient(180deg,#FEB200,var(--gold));font-weight:700;box-shadow:0 8px 20px rgba(254,178,0,.18);color:#000 !important;font-size:15px;white-space:nowrap;transition:transform 0.2s;text-align:center}
+
+    .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:10px 18px;border-radius:10px;border:1px solid var(--gold-strong);background:linear-gradient(180deg,#FEB200,var(--gold));font-weight:700;box-shadow:0 8px 20px rgba(254,178,0,.18);color:#000 !important;font-size:15px;white-space:nowrap;transition:transform .2s;text-align:center}
     .btn:hover{transform:translateY(-2px);box-shadow:0 10px 25px rgba(254,178,0,.25)}
     .btn--ghost{background:#fff;border-color:var(--gold-strong);color:#000 !important}
-    .btn--outline{background:#fff;border:2px solid var(--gold-strong);color:#000 !important;box-shadow:none;transition:all 0.3s ease}
+    .btn--outline{background:#fff;border:2px solid var(--gold-strong);color:#000 !important;box-shadow:none;transition:all .3s ease}
     .btn--outline:hover{background:var(--gold);transform:translateY(-2px);box-shadow:0 6px 16px rgba(254,178,0,.2)}
 
-    /* Mobile Menu - Bootstrap Style */
-    .hamburger{
-      display:none;
-      border:none;
-      background:transparent;
-      padding:4px;
-      cursor:pointer;
-      width:32px;
-      height:32px;
-      position:relative;
-      margin-left:auto;
-    }
-    .hamburger span{
-      display:block;
-      width:24px;
-      height:2px;
-      background:var(--ink);
-      margin:5px 0;
-      transition:all 0.3s ease;
-    }
-    .hamburger.active span:nth-child(1){
-      transform:rotate(45deg) translate(5px, 5px);
-    }
-    .hamburger.active span:nth-child(2){
-      opacity:0;
-    }
-    .hamburger.active span:nth-child(3){
-      transform:rotate(-45deg) translate(7px, -6px);
-    }
-    
-    /* Mobile Menu Overlay */
-    .menu-mobile{
-      display:none;
-      position:fixed;
-      top:0;
-      left:0;
-      right:0;
-      bottom:0;
-      background:rgba(0,0,0,0.5);
-      z-index:999;
-      opacity:0;
-      transition:opacity 0.3s ease;
-    }
-    .menu-mobile.show{
-      opacity:1;
-    }
-    
-    /* Mobile Menu Panel */
-    .menu-panel{
-      position:fixed;
-      top:0;
-      left:-100%;
-      width:80%;
-      max-width:320px;
-      height:100%;
-      background:#fff;
-      box-shadow:4px 0 20px rgba(0,0,0,0.1);
-      transition:left 0.3s ease;
-      z-index:1000;
-      overflow-y:auto;
-    }
-    .menu-mobile.show .menu-panel{
-      left:0;
-    }
-    
-    /* Mobile Menu Header */
-    .menu-header{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      padding:16px 20px;
-      border-bottom:1px solid var(--line);
-      background:var(--blue-100);
-    }
-    .menu-header img{
-      height:40px;
-      width:auto;
-    }
-    .close-menu{
-      background:transparent;
-      border:none;
-      font-size:24px;
-      cursor:pointer;
-      padding:4px;
-      color:var(--ink);
-    }
-    
-    /* Mobile Menu Items */
-    .menu-mobile-nav{
-      padding:0;
-    }
-    .menu-mobile-nav > a, .menu-mobile-nav .mobile-dropdown > a{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      padding:16px 20px;
-      color:var(--ink);
-      font-size:16px;
-      font-weight:500;
-      border-bottom:1px solid rgba(230,237,245,0.5);
-      transition:background 0.2s;
-    }
-    .menu-mobile-nav > a:hover, .menu-mobile-nav .mobile-dropdown > a:hover{
-      background:var(--blue-100);
-    }
-    
-    /* Mobile Dropdown */
-    .mobile-dropdown{
-      position:relative;
-    }
-    .mobile-dropdown > a::after{
-      content:'›';
-      font-size:20px;
-      transition:transform 0.3s;
-    }
-    .mobile-dropdown.active > a::after{
-      transform:rotate(90deg);
-    }
-    .mobile-dropdown-menu{
-      display:none;
-      background:#f8fafd;
-    }
-    .mobile-dropdown.active .mobile-dropdown-menu{
-      display:block;
-    }
-    .mobile-dropdown-menu a{
-      display:block;
-      padding:12px 20px 12px 40px;
-      color:#516381;
-      font-size:15px;
-      border-bottom:1px solid rgba(230,237,245,0.3);
-      transition:background 0.2s;
-    }
-    .mobile-dropdown-menu a:hover{
-      background:#fff;
-    }
-    
-    /* Mobile CTA */
-    .menu-mobile-cta{
-      padding:20px;
-      border-top:1px solid var(--line);
-      background:var(--blue-100);
-    }
-    .menu-mobile-cta .btn{
-      width:100%;
-      justify-content:center;
-      padding:14px;
-      font-size:16px;
-    }
-    
-    /* Hero - Centered with background */
+    /* Mobile menu */
+    .hamburger{display:none;border:none;background:transparent;padding:4px;cursor:pointer;width:32px;height:32px;margin-left:auto}
+    .hamburger span{display:block;width:24px;height:2px;background:var(--ink);margin:5px 0;transition:all .3s ease}
+    .hamburger.active span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+    .hamburger.active span:nth-child(2){opacity:0}
+    .hamburger.active span:nth-child(3){transform:rotate(-45deg) translate(7px,-6px)}
+    .menu-mobile{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.5);z-index:999;opacity:0;transition:opacity .3s ease}
+    .menu-mobile.show{opacity:1}
+    .menu-panel{position:fixed;top:0;left:-100%;width:80%;max-width:320px;height:100%;background:#fff;box-shadow:4px 0 20px rgba(0,0,0,.1);transition:left .3s ease;z-index:1000;overflow-y:auto;padding-bottom:calc(20px + var(--safe-btm))}
+    .menu-mobile.show .menu-panel{left:0}
+    .menu-header{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;padding-top:calc(16px + var(--safe-top));border-bottom:1px solid var(--line);background:var(--blue-100)}
+    .menu-header img{height:40px;width:auto}
+    .close-menu{background:transparent;border:none;font-size:24px;cursor:pointer;padding:4px;color:var(--ink)}
+    .menu-mobile-nav{padding:0}
+    .menu-mobile-nav> a, .menu-mobile-nav .mobile-dropdown> a{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;color:var(--ink);font-size:16px;font-weight:500;border-bottom:1px solid rgba(230,237,245,.5);transition:background .2s}
+    .menu-mobile-nav> a:hover, .menu-mobile-nav .mobile-dropdown> a:hover{background:var(--blue-100)}
+    .mobile-dropdown> a::after{content:'›';font-size:20px;transition:transform .3s}
+    .mobile-dropdown.active> a::after{transform:rotate(90deg)}
+    .mobile-dropdown-menu{display:none;background:#f8fafd}
+    .mobile-dropdown.active .mobile-dropdown-menu{display:block}
+    .mobile-dropdown-menu a{display:block;padding:12px 20px 12px 40px;color:#516381;font-size:15px;border-bottom:1px solid rgba(230,237,245,.3);transition:background .2s}
+    .mobile-dropdown-menu a:hover{background:#fff}
+    .menu-mobile-cta{padding:20px;border-top:1px solid var(--line);background:var(--blue-100)}
+    .menu-mobile-cta .btn{width:100%;justify-content:center;padding:14px;font-size:16px}
+
+    /* Hero */
     .hero{
-      background:linear-gradient(rgba(10,35,66,.85), rgba(10,35,66,.75)), 
-                url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=2070&auto=format&fit=crop');
-      background-size:cover;
-      background-position:center;
-      color:#fff;
-      min-height:600px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      text-align:center;
+      background: linear-gradient(rgb(0 0 0 / 85%), rgb(0 0 0 / 75%)), url(https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=2070&auto=format&fit=crop);
+      /* background:linear-gradient(rgba(10,35,66,.85), rgba(10,35,66,.75)),
+                 url('https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=2070&auto=format&fit=crop'); */
+      background-size:cover;background-position:center;color:#fff;min-height:600px;
+      display:flex;align-items:center;justify-content:center;text-align:center
     }
-    .hero .wrap{
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      gap:20px;
-      padding:80px 20px;
-      max-width:900px;
-    }
-    .hero h1{
-      font-family:Merriweather, Georgia, serif;
-      line-height:1.2;
-      font-size:48px;
-      margin:0;
-      max-width:800px;
-    }
-    .hero p{
-      max-width:700px;
-      opacity:.95;
-      font-size:18px;
-      line-height:1.6;
-    }
-    .hero .actions{
-      display:flex;
-      gap:16px;
-      flex-wrap:wrap;
-      margin-top:20px;
-      justify-content:center;
-    }
-    .hero .btn{
-      padding:12px 24px;
-      font-size:16px;
-    }
+    .hero .wrap{display:flex;flex-direction:column;align-items:center;gap:20px;padding:80px 20px;max-width:900px}
+    .hero h1{font-family:Merriweather, Georgia, serif;line-height:1.2;font-size:48px;margin:0;max-width:800px}
+    .hero p{max-width:700px;opacity:.95;font-size:18px;line-height:1.6}
+    .hero .actions{display:flex;gap:16px;flex-wrap:wrap;margin-top:20px;justify-content:center}
+    .hero .btn{padding:12px 24px;font-size:16px}
 
     /* Services stripe */
-    .services{background:var(--blue-800);color:#fff;padding:64px 0}
+    .services{background:#49515a;color:#fff;padding:64px 0}
     .ribbon{display:inline-block;background:var(--gold);color:#000;font-weight:800;padding:6px 10px;border-radius:6px;font-size:12px;letter-spacing:.08em}
     .services h2{font-family:Merriweather, Georgia, serif;margin:12px 0 24px;font-size:32px}
-    .svc-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px}
-    .svc{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.18);border-radius:14px;padding:20px;backdrop-filter:blur(2px)}
-    .svc h3{margin:8px 0 6px;color:#fff}
+
+    /* UPDATED: wider three-up cards with icons + Learn more */
+    .svc-grid{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:20px;
+    }
+    .svc{
+      background:rgba(255,255,255,.06);
+      border:1px solid rgba(255,255,255,.18);
+      border-radius:14px;
+      padding:22px;
+      backdrop-filter:blur(2px);
+      box-shadow:0 10px 24px rgba(0,0,0,.08);
+      display:flex;
+      flex-direction:column;
+      min-height:200px;
+    }
+    .svc h3{margin:10px 0 8px;color:#fff;font-size:18px}
     .svc p{margin:0;color:#d9e7ff;opacity:.95}
-    .svc .arrow{margin-top:10px;display:inline-flex;align-items:center;gap:8px;color:#fff}
-    .svc svg{width:28px;height:28px}
+    .svc-icon{
+      width:40px;height:40px;border-radius:10px;
+      border:1.5px solid rgba(255,255,255,.35);
+      display:grid;place-items:center;margin-bottom:6px;
+    }
+    .svc .learn{
+      display:inline-block;margin-top:14px;
+      font-weight:600;color:#fff;
+      text-decoration:none;
+    }
+    .svc .learn:hover{opacity:.85}
 
     /* Welcome split */
     .welcome{padding:70px 0;background:#fff}
@@ -342,10 +168,9 @@
     .post .body{padding:14px}
     .post h4{margin:0 0 6px;font-size:16px}
     .post p{margin:0 0 10px;color:#5a6a82;font-size:14px}
-    .post a.btn{margin:0 0 14px}
 
     /* Contact strip */
-    .cta-strip{background:var(--blue-800);padding:40px 0;color:#fff}
+    .cta-strip{background:#49515A;padding:40px 0;color:#fff}
     .cta-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:20px}
     .panel{border-radius:14px;padding:20px}
     .panel--light{background:#f6f9ff;border:1px solid var(--line);color:#1e2c45}
@@ -355,7 +180,7 @@
     .contact-list li+li{margin-top:6px}
 
     /* Footer */
-    footer{background:#0b203f;color:#dbe6ff}
+    footer{background:#000000;color:#dbe6ff}
     .footer{padding:36px 0}
     .foot-grid{display:grid;grid-template-columns:1fr .8fr .8fr;gap:20px}
     .foot-grid h4{margin:0 0 10px;color:#fff}
@@ -363,163 +188,51 @@
     .foot-grid a:hover{color:#fff}
     .copyright{border-top:1px solid rgba(255,255,255,.15);padding:14px 0;color:#cbd6f7;font-size:13px;margin-top:12px}
 
-    /* Responsive Design - Enhanced */
-    @media (max-width: 1200px) {
-      .menu a{font-size:13px}
-      .menu{gap:10px}
-      .hero h1{font-size:42px}
-      .brand img{height:48px;max-width:180px} /* Slightly smaller for laptops */
-    }
-
-    @media (max-width: 1100px) {
-      .svc-grid{grid-template-columns:repeat(2,1fr)}
-      .cards{grid-template-columns:repeat(2,1fr)}
-      .brand img{height:45px;max-width:170px}
-    }
-
-    @media (max-width: 980px) {
-      .menu{display:none}
-      .hamburger{display:block}
-      .brand img{height:45px;max-width:180px} /* Mobile logo size */
-      .hero h1{font-size:36px}
-      .hero p{font-size:16px}
-    }
-
-    @media (max-width: 960px) {
-      .resources .grid{grid-template-columns:1fr}
-    }
-
-    @media (max-width: 900px) {
-      .welcome .split{grid-template-columns:1fr}
-      .cta-grid{grid-template-columns:1fr}
-      .foot-grid{grid-template-columns:1fr 1fr}
-    }
-
-    @media (max-width: 768px) {
+    /* Responsive */
+    @media (max-width: 1200px){.menu a{font-size:13px}.menu{gap:10px}.hero h1{font-size:42px}.brand img{height:48px;max-width:180px}}
+    @media (max-width: 1100px){.svc-grid{grid-template-columns:repeat(2,1fr)}.cards{grid-template-columns:repeat(2,1fr)}.brand img{height:45px;max-width:170px}}
+    @media (max-width: 980px){.menu{display:none}.hamburger{display:block}.brand img{height:45px;max-width:180px}.hero h1{font-size:36px}.hero p{font-size:16px}}
+    @media (max-width: 960px){.resources .grid{grid-template-columns:1fr}}
+    @media (max-width: 900px){.welcome .split{grid-template-columns:1fr}.cta-grid{grid-template-columns:1fr}.foot-grid{grid-template-columns:1fr 1fr}}
+    @media (max-width: 768px){
       .hero .wrap{padding:60px 20px}
       .hero h1{font-size:32px}
-      .hero .actions{
-        flex-direction:column;
-        width:100%;
-        align-items:center;
-        gap:12px;
-      }
-      .hero .btn{
-        width:auto;
-        min-width:200px;
-        max-width:280px;
-        padding:14px 28px;
-      }
+      .hero .actions{flex-direction:column;width:100%;align-items:center;gap:12px}
+      .hero .btn{width:auto;min-width:200px;max-width:280px;padding:14px 28px}
       .grid-news{grid-template-columns:1fr}
-      .topbar .row{flex-direction:column;gap:8px}
-      .brand img{height:42px;max-width:160px} /* Tablet size */
+      .brand img{height:42px;max-width:160px}
     }
-
-    @media (max-width: 640px) {
+    @media (max-width: 640px){
       .svc-grid{grid-template-columns:1fr}
       .cards{grid-template-columns:1fr}
-      .brand img{height:40px;max-width:150px} /* Large phones */
+      .brand img{height:40px;max-width:150px}
       .hero h1{font-size:28px;line-height:1.3}
       .hero p{font-size:15px}
       .services h2{font-size:24px}
       .container{padding:0 15px}
     }
-
-    @media (max-width: 600px) {
+    @media (max-width: 600px){
       .foot-grid{grid-template-columns:1fr}
-      .footer img{height:65px;max-width:200px} /* Footer logo size increased */
+      .footer img{height:65px;max-width:200px}
+      /* FOOTER FIX: keep content off the screen edges */
+      footer .footer{padding-left:20px;padding-right:20px}
+      footer .copyright{padding-left:20px;padding-right:20px}
     }
-
-    @media (max-width: 480px) {
+    @media (max-width: 480px){
       .hero h1{font-size:24px}
-      .hero .btn{
-        font-size:14px;
-        padding:12px 24px;
-        min-width:180px;
-        max-width:250px;
-      }
-      .hero .actions{
-        gap:10px;
-      }
+      .hero .btn{font-size:14px;padding:12px 24px;min-width:180px;max-width:250px}
       .nav{padding:12px 0}
-      .brand img{height:38px;max-width:140px} /* Small phones */
-      .topbar{font-size:12px}
-      .chip{font-size:11px;padding:4px 8px}
+      .brand img{height:38px;max-width:140px}
+    }
+    @media (max-width: 360px){
+      .brand img{height:36px;max-width:130px}
+      .hero .btn{min-width:160px;max-width:220px;padding:11px 20px}
     }
 
-    @media (max-width: 360px) {
-      .brand img{height:36px;max-width:130px} /* Very small phones */
-      .hero .btn{
-        min-width:160px;
-        max-width:220px;
-        padding:11px 20px;
-      }
-    }
-
-    /* Animation Classes */
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-    
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-    
-    @keyframes slideInLeft {
-      from {
-        opacity: 0;
-        transform: translateX(-30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateX(0);
-      }
-    }
-    
-    @keyframes slideInRight {
-      from {
-        opacity: 0;
-        transform: translateX(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateX(0);
-      }
-    }
-    
-    .animate-on-scroll {
-      opacity: 0;
-    }
-    
-    .animate-fadeInUp {
-      animation: fadeInUp 0.8s ease forwards;
-    }
-    
-    .animate-fadeIn {
-      animation: fadeIn 1s ease forwards;
-    }
-    
-    .animate-slideInLeft {
-      animation: slideInLeft 0.8s ease forwards;
-    }
-    
-    .animate-slideInRight {
-      animation: slideInRight 0.8s ease forwards;
-    }
-    
-    /* Stagger animations for cards */
-    .stagger-1 { animation-delay: 0.1s; }
-    .stagger-2 { animation-delay: 0.2s; }
-    .stagger-3 { animation-delay: 0.3s; }
-    .stagger-4 { animation-delay: 0.4s; }
+    /* Animations (optional, used below) */
+    @keyframes fadeInUp {from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:translateY(0)}}
+    .animate-on-scroll{opacity:0}
+    .animate-fadeInUp{animation:fadeInUp .8s ease forwards}
 
     /* Accessibility */
     :focus-visible{outline:2px solid var(--gold-strong);outline-offset:2px}
@@ -527,93 +240,28 @@
   </style>
 </head>
 <body>
-  <!-- Topbar -->
-  <!-- <div class="topbar">
-    <div class="container">
-      <div class="row">
-        <div class="links" aria-label="utility links">
-          <a href="#">Client Secure Portal</a>
-          <span>|</span>
-          <a href="#news">Newsletters</a>
-          <span>|</span>
-          <a href="#resources">Financial Tools</a>
-        </div>
-        <div>
-          <span class="chip">#CommittedToQuality</span>
-        </div>
-      </div>
-    </div>
-  </div> -->
-
   <!-- Header / Navigation -->
   <header class="header" role="banner">
     <div class="container">
       <nav class="nav" aria-label="Primary">
         <a class="brand" href="#home">
-          <img src="images/logo.png" alt="Aiken & Sanders Logo">
+          <img src="images/logo.png" onerror="this.onerror=null;this.src='/mnt/data/f587725d-4805-4b55-8894-3b0a2c479fa6.png'" alt="Aiken & Sanders Logo">
         </a>
-        <button id="hamburger" class="hamburger" aria-expanded="false" aria-controls="menu">
-          <span></span>
-          <span></span>
-          <span></span>
+        <button id="hamburger" class="hamburger" aria-expanded="false" aria-controls="menu" aria-label="Open menu">
+          <span></span><span></span><span></span>
         </button>
         <div id="menu" class="menu" role="navigation">
           <a href="index.html">Home</a>
-          <div class="dropdown">
-            
-            <div class="navmenu">
-  <style>
-    /* Existing styles for .menu > a and .menu .dropdown > a */
-    .menu > a,
-    .menu .dropdown > a {
-      font-weight: 600;
-      color: #2a3e5e;
-      font-size: 15px;
-      transition: color 0.3s;
-    }
-
-    /* Styles for the new .navmenu > a */
-    .navmenu > a {
-      font-weight: 600;
-      color: #2a3e5e;
-      font-size: 15px;
-      transition: color 0.3s;
-      text-decoration: none; /* Ensure no underline */
-    }
-
-    /* Hover effect for the new .navmenu > a */
-    .navmenu > a:hover {
-      color: #000000; /* Change to your desired hover color */
-    }
-  </style>
-  <a href="about_us.html">About</a>
-</div>
-
-            <!-- <a href="about_us.html">About</a> -->
-            <!-- <div class="dropdown-menu"> -->
-              <!-- <a href="#profile">Firm Profile</a>
-              <a href="#team">Our Team</a>
-              <a href="#why-us">Why Choose Us</a> -->
-            <!-- </div> -->
-          </div>
+          <!-- About is a simple link (no dropdown) -->
+          <a href="about_us.html">About</a>
           <div class="dropdown">
             <a href="#services">Services</a>
             <div class="dropdown-menu">
               <a href="audit_assurance.html">Assurance & Audits</a>
               <a href="accounting_services.html">Accounting Services</a>
               <a href="taxation_service.html">Taxation Services</a>
-              <!-- <a href="#tech">Information Technology</a> -->
             </div>
           </div>
-          <!-- <div class="dropdown">
-            <a href="#resources">Resources</a>
-            <div class="dropdown-menu">
-              <a href="#news">Newsletters</a>
-              <a href="#tools">Financial Tools</a>
-              <a href="#links">Useful Links</a>
-              <a href="#center">Info Center</a>
-            </div>
-          </div> -->
           <a href="contact_us.html">Contact</a>
           <a class="btn" href="contact_us.html">Get in Touch</a>
         </div>
@@ -622,41 +270,26 @@
   </header>
 
   <!-- Mobile Menu Overlay -->
-  <div id="mobileMenu" class="menu-mobile">
-    <div class="menu-panel">
+  <div id="mobileMenu" class="menu-mobile" aria-hidden="true">
+    <div class="menu-panel" role="dialog" aria-modal="true" aria-label="Mobile navigation">
       <div class="menu-header">
-        <img src="images/logo.png" alt="Aiken & Sanders">
-        <button class="close-menu" id="closeMenu">&times;</button>
+        <img src="images/logo.png" onerror="this.onerror=null;this.src='/mnt/data/f587725d-4805-4b55-8894-3b0a2c479fa6.png'" alt="Aiken & Sanders">
+        <button class="close-menu" id="closeMenu" aria-label="Close menu">&times;</button>
       </div>
       <div class="menu-mobile-nav">
         <a href="index.html">Home</a>
-        <div class="mobile-dropdown">
-          <a href="about_us.html">About</a>
-          <div class="mobile-dropdown-menu">
-            <!-- <a href="#profile">Firm Profile</a> -->
-            <!-- <a href="#team">Our Team</a> -->
-            <!-- <a href="#why-us">Why Choose Us</a> -->
-          </div>
-        </div>
+        <!-- About is a plain link (no arrow) -->
+        <a href="about_us.html">About</a>
+        <!-- Services keeps dropdown -->
         <div class="mobile-dropdown">
           <a href="#services">Services</a>
           <div class="mobile-dropdown-menu">
             <a href="audit_assurance.html">Assurance & Audits</a>
-            <a href="#accounting">Accounting & Advisory</a>
-            <a href="#tax">Taxation Services</a>
-            <!-- <a href="#tech">Information Technology</a> -->
+            <a href="accounting_services.html">Accounting & Advisory</a>
+            <a href="taxation_service.html">Taxation Services</a>
           </div>
         </div>
-        <!-- <div class="mobile-dropdown">
-          <a href="#resources">Resources</a>
-          <div class="mobile-dropdown-menu">
-            <a href="#news">Newsletters</a>
-            <a href="#tools">Financial Tools</a>
-            <a href="#links">Useful Links</a>
-            <a href="#center">Info Center</a>
-          </div>
-        </div> -->
-        <a href="#contact">Contact</a>
+        <a href="contact_us.html">Contact</a>
       </div>
       <div class="menu-mobile-cta">
         <a class="btn" href="#contact">Get in Touch</a>
@@ -664,7 +297,7 @@
     </div>
   </div>
 
-  <!-- Hero - Centered -->
+  <!-- Hero -->
   <section id="home" class="hero">
     <div class="container">
       <div class="wrap">
@@ -672,7 +305,7 @@
         <p>Welcome and thank you for visiting Aiken & Sanders. This site offers a profile of our firm and services, and is designed to be a helpful resource for clients and visitors—highlighting our dedication to superior professional service and guidance.</p>
         <div class="actions">
           <a class="btn" href="#services">Our Services</a>
-          <a class="btn btn--ghost" href="#contact">Contact Us</a>
+          <a class="btn btn--ghost" href="contact_us.html">Contact Us</a>
         </div>
       </div>
     </div>
@@ -684,41 +317,49 @@
       <span class="ribbon animate-on-scroll">SERVICES WE PROVIDE</span>
       <h2 class="animate-on-scroll">Professional, practical support for every stage.</h2>
       <div class="svc-grid">
-        <article class="svc animate-on-scroll stagger-1">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-            <path d="M9 11l3 3L22 4"/>
-            <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/>
-          </svg>
+        <!-- Assurance & Audits -->
+        <article class="svc animate-on-scroll">
+          <div class="svc-icon" aria-hidden="true">
+            <!-- clipboard-check icon -->
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M9 4h6a2 2 0 0 1 2 2v0a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2v0a2 2 0 0 1 2-2Z"/>
+              <path d="M9 4v0a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v0"/>
+              <path d="M6 8v10a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V8"/>
+              <path d="m9 13 2 2 4-4"/>
+            </svg>
+          </div>
           <h3>Assurance & Audits</h3>
           <p>Insightful financial reviews and tailored solutions for your unique needs.</p>
-          <div class="arrow">Learn more →</div>
+          <a class="learn" href="audit_assurance.html">Learn more →</a>
         </article>
-        <article class="svc animate-on-scroll stagger-2">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-            <path d="M12 2v20M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/>
-          </svg>
+
+        <!-- Accounting & Advisory -->
+        <article class="svc animate-on-scroll">
+          <div class="svc-icon" aria-hidden="true">
+            <!-- dollar-loop icon -->
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2v20"/>
+              <path d="M17 6H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 1 1 0 7H6"/>
+            </svg>
+          </div>
           <h3>Accounting & Advisory</h3>
-          <p>Day‑to‑day accounting and trusted guidance to help you make confident decisions.</p>
-          <div class="arrow">Learn more →</div>
+          <p>Day-to-day accounting and trusted guidance to help you make confident decisions.</p>
+          <a class="learn" href="accounting_services.html">Learn more →</a>
         </article>
-        <article class="svc animate-on-scroll stagger-3">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-            <path d="M9 7h6m0 10v-3m-3 3h.01M5 21h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v14a2 2 0 002 2z"/>
-            <path d="M9 11h6"/>
-          </svg>
+
+        <!-- Taxation Services -->
+        <article class="svc animate-on-scroll">
+          <div class="svc-icon" aria-hidden="true">
+            <!-- document icon -->
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 2H7a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V7Z"/>
+              <path d="M14 2v5h5"/>
+              <path d="M9 13h6M9 17h6M9 9h3"/>
+            </svg>
+          </div>
           <h3>Taxation Services</h3>
           <p>Compliance and planning delivered with care and attention to detail.</p>
-          <div class="arrow">Learn more →</div>
-        </article>
-        <article class="svc animate-on-scroll stagger-4">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-            <path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/>
-            <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
-            <line x1="12" y1="22.08" x2="12" y2="12"/>
-          </svg>
-          <h3>Information Technology</h3>
-          <p>Secure, practical systems to support your operations and reporting.</p>
-          <div class="arrow">Learn more →</div>
+          <a class="learn" href="taxation_service.html">Learn more →</a>
         </article>
       </div>
     </div>
@@ -740,7 +381,7 @@
             <strong>Aiken & Sanders, Inc. PS</strong>
             <span>324 S MAIN ST UNIT A</span>
             <span>MONTESANO, WA 98563</span>
-            <span>Telephone: <a href="tel:13605333370">360‑533‑3370</a> &nbsp;|&nbsp; Fax: 360‑532‑7123</span>
+            <span>Telephone: <a href="tel:13605333370">360-533-3370</a> &nbsp;|&nbsp; Fax: 360-532-7123</span>
             <span>Email: <a href="mailto:janet@aiken-sanders.com">janet@aiken-sanders.com</a></span>
           </div>
           <div style="margin-top:12px">
@@ -783,7 +424,7 @@
       <span class="ribbon">CLIENT RESOURCES</span>
       <div class="grid" style="margin-top:10px">
         <div class="feature-box">
-          <h3>Explore tools made for decision‑making</h3>
+          <h3>Explore tools made for decision-making</h3>
           <p>We've gathered practical resources so you can move forward with confidence.</p>
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px">
             <div class="feature-box"><h4>Financial Calculators</h4><p>Interactive tools to model scenarios and plan ahead.</p></div>
@@ -803,16 +444,16 @@
       <span class="ribbon animate-on-scroll">NEWSLETTERS & ARTICLES</span>
       <h2 class="animate-on-scroll">Read our latest updates</h2>
       <div class="grid-news">
-        <article class="post animate-on-scroll stagger-1">
+        <article class="post animate-on-scroll">
           <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?q=80&w=800&auto=format&fit=crop')"></div>
           <div class="body">
             <small>Coming Soon</small>
             <h4>Firm News & Deadlines</h4>
             <p>Important dates and brief updates relevant to our clients.</p>
-            <a href="#" class="btn btn--outline">View Newsletter</a>
+            <a href="#" class="btn btn--outline">View Article</a>
           </div>
         </article>
-        <article class="post animate-on-scroll stagger-2">
+        <article class="post animate-on-scroll">
           <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=800&auto=format&fit=crop')"></div>
           <div class="body">
             <small>Coming Soon</small>
@@ -821,7 +462,7 @@
             <a href="#" class="btn btn--outline">View Article</a>
           </div>
         </article>
-        <article class="post animate-on-scroll stagger-3">
+        <article class="post animate-on-scroll">
           <div class="thumb" style="background-image:url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop')"></div>
           <div class="body">
             <small>Coming Soon</small>
@@ -842,8 +483,8 @@
           <span class="ribbon" style="background:#FEB200">How can we help?</span>
           <h3>We'd love to hear from you</h3>
           <ul class="contact-list">
-            <li><strong>Telephone:</strong> <a href="tel:13605333370" style="color:#fff">360‑533‑3370</a></li>
-            <li><strong>Fax:</strong> 360‑532‑7123</li>
+            <li><strong>Telephone:</strong> <a href="tel:13605333370" style="color:#fff">360-533-3370</a></li>
+            <li><strong>Fax:</strong> 360-532-7123</li>
             <li><strong>Email:</strong> <a href="mailto:janet@aiken-sanders.com" style="color:#fff">janet@aiken-sanders.com</a></li>
             <li><strong>Address:</strong> 324 S MAIN ST UNIT A, MONTESANO, WA 98563</li>
           </ul>
@@ -866,21 +507,21 @@
     <div class="container footer">
       <div class="foot-grid">
         <div>
-          <img src="images/logo-white.png" alt="Aiken & Sanders" style="height:70px;width:auto;max-width:200px;object-fit:contain;margin-bottom:12px">
+          <img src="images/logo-white.png" onerror="this.onerror=null;this.src='/mnt/data/f587725d-4805-4b55-8894-3b0a2c479fa6.png'" alt="Aiken & Sanders" style="height:70px;width:auto;max-width:200px;object-fit:contain;margin-bottom:12px">
           <p style="color:#cbd9ff">Dedicated to superior client service and guidance.</p>
         </div>
         <div>
           <h4>Quick Links</h4>
-          <a href="#services">Services</a><br>
-          <a href="#about">About</a><br>
-          <a href="#news">Newsletters</a><br>
-          <a href="#resources">Financial Tools</a>
+          <!-- <a href="#services">Services</a><br> -->
+          <a href="about_us.html">About</a><br>
+          <a href="contact_us.html">Contact</a><br>
+          <a href="#services">Services</a>
         </div>
         <div>
           <h4>Contact</h4>
           <p style="margin:0 0 8px">Aiken & Sanders, Inc. PS<br>324 S MAIN ST UNIT A<br>Montesano, WA 98563</p>
-          <a href="tel:13605333370">360‑533‑3370</a><br>
-          <span>Fax: 360‑532‑7123</span><br>
+          <a href="tel:13605333370">360-533-3370</a><br>
+          <span>Fax: 360-532-7123</span><br>
           <a href="mailto:janet@aiken-sanders.com">janet@aiken-sanders.com</a>
         </div>
       </div>
@@ -889,112 +530,89 @@
   </footer>
 
   <script>
-    // Animation on scroll
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const element = entry.target;
-          
-          // Determine animation type based on element
-          if (element.classList.contains('stagger-1')) {
-            element.classList.add('animate-fadeInUp', 'stagger-1');
-          } else if (element.classList.contains('stagger-2')) {
-            element.classList.add('animate-fadeInUp', 'stagger-2');
-          } else if (element.classList.contains('stagger-3')) {
-            element.classList.add('animate-fadeInUp', 'stagger-3');
-          } else if (element.classList.contains('stagger-4')) {
-            element.classList.add('animate-fadeInUp', 'stagger-4');
-          } else if (element.closest('.welcome .split > *:first-child')) {
-            element.classList.add('animate-slideInLeft');
-          } else if (element.closest('.welcome .split > *:last-child')) {
-            element.classList.add('animate-slideInRight');
-          } else {
-            element.classList.add('animate-fadeInUp');
-          }
-          
-          observer.unobserve(element);
+    // Simple "animate on scroll"
+    const observer = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){
+          entry.target.classList.add('animate-fadeInUp');
+          observer.unobserve(entry.target);
         }
       });
-    }, observerOptions);
+    }, {threshold:0.15});
+    document.addEventListener('DOMContentLoaded', ()=>{
+      document.querySelectorAll('.animate-on-scroll').forEach(el=>observer.observe(el));
+    });
 
-    // Observe all elements with animation class
+    // Mobile menu logic (About = plain link, Services has submenu)
     document.addEventListener('DOMContentLoaded', () => {
-      const animatedElements = document.querySelectorAll('.animate-on-scroll');
-      animatedElements.forEach(el => observer.observe(el));
-      
-      // Hero animation on load
-      const heroElements = document.querySelectorAll('.hero h1, .hero p, .hero .actions');
-      heroElements.forEach((el, index) => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(20px)';
-        setTimeout(() => {
-          el.style.transition = 'all 0.8s ease';
-          el.style.opacity = '1';
-          el.style.transform = 'translateY(0)';
-        }, 100 + (index * 150));
+      const hamburger = document.getElementById('hamburger');
+      const mobileMenu = document.getElementById('mobileMenu');
+      const closeMenu = document.getElementById('closeMenu');
+      const menuPanel = document.querySelector('.menu-panel');
+      const focusableSelectors = 'a, button, input, [tabindex]:not([tabindex="-1"])';
+
+      const setExpanded = (state) => hamburger?.setAttribute('aria-expanded', String(state));
+      const openMobile = () => {
+        mobileMenu.style.display = 'block';
+        requestAnimationFrame(()=>{
+          mobileMenu.classList.add('show');
+          hamburger.classList.add('active');
+          setExpanded(true);
+          mobileMenu.setAttribute('aria-hidden','false');
+        });
+        document.body.style.overflow = 'hidden';
+      };
+      const closeMobile = () => {
+        mobileMenu.classList.remove('show');
+        hamburger.classList.remove('active');
+        setExpanded(false);
+        mobileMenu.setAttribute('aria-hidden','true');
+        setTimeout(()=>{ mobileMenu.style.display = 'none'; }, 300);
+        document.body.style.overflow = '';
+      };
+
+      hamburger?.addEventListener('click', () => {
+        if(mobileMenu.classList.contains('show')) closeMobile(); else openMobile();
       });
-    });
+      closeMenu?.addEventListener('click', closeMobile);
+      mobileMenu?.addEventListener('click', (e)=>{ if(e.target === mobileMenu) closeMobile(); });
+      document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape' && mobileMenu.classList.contains('show')) closeMobile(); });
 
-    // Mobile menu functionality
-    const hamburger = document.getElementById('hamburger');
-    const mobileMenu = document.getElementById('mobileMenu');
-    const closeMenu = document.getElementById('closeMenu');
-    const mobileDropdowns = document.querySelectorAll('.mobile-dropdown');
-    const menuPanel = document.querySelector('.menu-panel');
+      // Toggle Services section only (About is a simple link)
+      const mobileNav = document.querySelector('.menu-mobile-nav');
+      mobileNav?.addEventListener('click', (e)=>{
+        const headerLink = e.target.closest('.mobile-dropdown > a');
+        if(headerLink){ e.preventDefault(); headerLink.parentElement.classList.toggle('active'); }
+      }, true);
 
-    // Toggle mobile menu
-    hamburger?.addEventListener('click', () => {
-      mobileMenu.style.display = 'block';
-      setTimeout(() => {
-        mobileMenu.classList.add('show');
-        hamburger.classList.add('active');
-      }, 10);
-      document.body.style.overflow = 'hidden';
-    });
+      // Submenu links: close then navigate
+      menuPanel?.addEventListener('click', (e)=>{
+        const submenuLink = e.target.closest('.mobile-dropdown-menu a');
+        if(submenuLink){
+          e.preventDefault();
+          const href = submenuLink.getAttribute('href');
+          closeMobile();
+          setTimeout(()=>{ window.location.href = href; }, 0);
+        }
+      }, true);
 
-    // Close mobile menu
-    const closeMobileMenu = () => {
-      mobileMenu.classList.remove('show');
-      hamburger.classList.remove('active');
-      setTimeout(() => {
-        mobileMenu.style.display = 'none';
-      }, 300);
-      document.body.style.overflow = '';
-    };
-
-    closeMenu?.addEventListener('click', closeMobileMenu);
-
-    // Close menu when clicking overlay
-    mobileMenu?.addEventListener('click', (e) => {
-      if (e.target === mobileMenu) {
-        closeMobileMenu();
-      }
-    });
-
-    // Handle mobile dropdowns
-    mobileDropdowns.forEach(dropdown => {
-      const link = dropdown.querySelector('> a');
-      link?.addEventListener('click', (e) => {
-        e.preventDefault();
-        dropdown.classList.toggle('active');
+      // Close drawer on any top-level plain link (e.g., About)
+      document.querySelectorAll('.menu-mobile-nav > a').forEach(a=>{
+        a.addEventListener('click', ()=> closeMobile());
       });
-    });
 
-    // Close menu when clicking on a link
-    const mobileLinks = document.querySelectorAll('.menu-mobile-nav a:not(.mobile-dropdown > a)');
-    mobileLinks.forEach(link => {
-      link.addEventListener('click', () => {
-        closeMobileMenu();
+      // Focus first item when opened
+      mobileMenu.addEventListener('transitionend', ()=>{
+        if(mobileMenu.classList.contains('show')){
+          const firstFocusable = menuPanel?.querySelector(focusableSelectors);
+          firstFocusable && firstFocusable.focus();
+        }
       });
-    });
 
-    // Set current year
-    document.getElementById('year').textContent = new Date().getFullYear();
+      // Year
+      const y = document.getElementById('year');
+      if(y) y.textContent = new Date().getFullYear();
+    });
   </script>
 </body>
 </html>
