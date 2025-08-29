@@ -64,7 +64,7 @@
     .hidden{display:none !important}
     .menu-mobile{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.5);z-index:999;opacity:0;transition:opacity .3s ease}
     .menu-mobile.show{opacity:1}
-    .menu-panel{position:fixed;top:0;left:-100%;width:80%;max-width:340px;height:100%;background:#fff;box-shadow:4px 0 20px rgba(0,0,0,.12);transition:left .3s ease;z-index:1000;overflow-y:auto;padding-bottom:var(--safe-btm)}
+    .menu-panel{position:fixed;top:0;left:-100%;width:80%;max-width:340px;height:100%;background:#fff;box-shadow:0 8px 20px rgba(0,0,0,.12);transition:left .3s ease;z-index:1000;overflow-y:auto;padding-bottom:var(--safe-btm)}
     .menu-mobile.show .menu-panel{left:0}
     .menu-header{display:flex;align-items:center;justify-content:space-between;padding:16px 20px; padding-top:calc(16px + var(--safe-top)); border-bottom:1px solid var(--line);background:var(--blue-100)}
     .menu-header img{height:40px;width:auto}
@@ -92,7 +92,7 @@
     }
 
     /* Hero */
-    .hero{background:linear-gradient(165deg, rgba(10,35,66,.85), rgba(10,35,66,.65)), url('https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=1920&auto=format&fit=crop');background-size:cover;background-position:center;color:#fff;display:grid;place-items:center;min-height:440px}
+    .hero{background:linear-gradient(165deg, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.65)), url('https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?q=80&w=1920&auto=format&fit=crop');background-size:cover;background-position:center;color:#fff;display:grid;place-items:center;min-height:440px}
     .hero .wrap{display:flex;flex-direction:column;align-items:center;gap:14px;padding:92px 0 98px;text-align:center}
     .hero h1{font-family:Merriweather, Georgia, serif;line-height:1.15;font-size:clamp(28px,4.2vw,46px);margin:0}
     .hero p{max-width:78ch;opacity:.95;font-size:clamp(14px,2vw,18px);margin:0 auto}
@@ -129,7 +129,7 @@
     @media (max-width: 900px){.benefits{grid-template-columns:1fr}}
 
     /* CTA strip & footer */
-    .cta-strip{background:var(--blue-800);padding:40px 0;color:#fff}
+    .cta-strip{background:#49515A;padding:40px 0;color:#fff}
     .cta-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:20px}
     .panel{border-radius:14px;padding:20px}
     .panel--light{background:#f6f9ff;border:1px solid var(--line);color:#1e2c45}
@@ -139,7 +139,7 @@
     .contact-list li+li{margin-top:6px}
     @media (max-width: 900px){.cta-grid{grid-template-columns:1fr}}
 
-    footer{background:#0b203f;color:#dbe6ff}
+    footer{background:#000000;color:#dbe6ff}
     .footer{padding:36px 0}
     .foot-grid{display:grid;grid-template-columns:1fr .8fr .8fr;gap:20px}
     .foot-grid h4{margin:0 0 10px;color:#fff}
@@ -147,7 +147,12 @@
     .foot-grid a:hover{color:#fff}
     .copyright{border-top:1px solid rgba(255,255,255,.15);padding:14px 0;color:#cbd6f7;font-size:13px;margin-top:12px}
     @media (max-width: 900px){.foot-grid{grid-template-columns:1fr 1fr}}
-    @media (max-width: 600px){.foot-grid{grid-template-columns:1fr}}
+    @media (max-width: 600px){
+      .foot-grid{grid-template-columns:1fr}
+      /* FOOTER FIX: keep content off the screen edges on small devices */
+      footer .footer{padding-left:20px;padding-right:20px}
+      footer .copyright{padding-left:20px;padding-right:20px}
+    }
 
     :focus-visible{outline:2px solid var(--gold-strong);outline-offset:2px}
     @media (prefers-reduced-motion: reduce){*{animation:none !important;transition:none !important;scroll-behavior:auto !important}}
@@ -158,7 +163,7 @@
   <header class="header" role="banner">
     <div class="container">
       <nav class="nav" aria-label="Primary">
-        <a class="brand" href="aiken_sanders_homepage.html">
+        <a class="brand" href="index.html">
           <img src="images/logo.png" onerror="this.onerror=null;this.src='/mnt/data/f587725d-4805-4b55-8894-3b0a2c479fa6.png'" alt="Aiken & Sanders Logo">
         </a>
         <button id="hamburger" class="hamburger" aria-expanded="false" aria-controls="menu" aria-label="Open menu">
@@ -170,7 +175,6 @@
           <div class="dropdown">
                                     <div class="navmenu">
   <style>
-    /* Existing styles for .menu > a and .menu .dropdown > a */
     .menu > a,
     .menu .dropdown > a {
       font-weight: 600;
@@ -178,24 +182,19 @@
       font-size: 15px;
       transition: color 0.3s;
     }
-
-    /* Styles for the new .navmenu > a */
     .navmenu > a {
       font-weight: 600;
       color: #2a3e5e;
       font-size: 15px;
       transition: color 0.3s;
-      text-decoration: none; /* Ensure no underline */
+      text-decoration: none;
     }
-
-    /* Hover effect for the new .navmenu > a */
     .navmenu > a:hover {
-      color: #000000; /* Change to your desired hover color */
+      color: #000000;
     }
   </style>
   <a href="about_us.html">About</a>
 </div>
-            <!-- <a href="about_us.html">About</a> -->
           </div>
           <div class="dropdown">
             <a href="#services">Services</a>
@@ -245,7 +244,7 @@
     <div class="container">
       <div class="wrap">
         <h1>Accounting Services</h1>
-        <p>Your trusted accounting partner — clear communication, practical guidance, and reliable delivery. We offer flexible on‑site and virtual options to keep your books current and useful.</p>
+        <p>Your trusted accounting partner — clear communication, practical guidance, and reliable delivery. We offer flexible on-site and virtual options to keep your books current and useful.</p>
         <div class="actions" style="display:flex;gap:12px;flex-wrap:wrap;margin-top:8px;justify-content:center">
           <a class="btn" href="#acct">Explore Services</a>
           <a class="btn btn--ghost" href="contact.html">Request a Consultation</a>
@@ -260,14 +259,14 @@
       <div class="split">
         <div class="box">
           <h2>Your trusted accounting partner</h2>
-          <p class="sub">Aiken & Sanders provides cost‑effective accounting solutions that help organizations turn information into action. Our dedicated professionals combine experience with modern tools to deliver timely communication and dependable results.</p>
-          <p class="sub">We support maintenance of <strong>general ledger</strong>, <strong>accounts payable</strong>, <strong>accounts receivable</strong>, <strong>financial records</strong>, and <strong>project accounting</strong> — focusing on accuracy, clarity, and on‑time reporting. Virtual accounting options are available when you need additional flexibility.</p>
+          <p class="sub">Aiken & Sanders provides cost-effective accounting solutions that help organizations turn information into action. Our dedicated professionals combine experience with modern tools to deliver timely communication and dependable results.</p>
+          <p class="sub">We support maintenance of <strong>general ledger</strong>, <strong>accounts payable</strong>, <strong>accounts receivable</strong>, <strong>financial records</strong>, and <strong>project accounting</strong> — focusing on accuracy, clarity, and on-time reporting. Virtual accounting options are available when you need additional flexibility.</p>
           <div class="chips" aria-label="Industries we specialize in">
             <span class="chip">Tribal entities</span>
             <span class="chip">Governmental agencies</span>
             <span class="chip">Educational entities</span>
             <span class="chip">Housing authorities</span>
-            <span class="chip">Not‑for‑profit organizations</span>
+            <span class="chip">Not-for-profit organizations</span>
           </div>
         </div>
         <figure class="media">
@@ -286,8 +285,8 @@
         </figure>
         <div class="box">
           <h2>Our practice</h2>
-          <p class="sub">We are a U.S.‑based CPA firm headquartered in <strong>Montesano, Washington</strong>, serving clients across the country. Whether you’re a public agency, a nonprofit, or a private enterprise, our services are highly customizable to your needs.</p>
-          <p class="sub">Our team emphasizes a collaborative approach — pairing seasoned professionals with secure, cloud‑based systems so you receive precise, timely financial information.</p>
+          <p class="sub">We are a U.S.-based CPA firm headquartered in <strong>Montesano, Washington</strong>, serving clients across the country. Whether you’re a public agency, a nonprofit, or a private enterprise, our services are highly customizable to your needs.</p>
+          <p class="sub">Our team emphasizes a collaborative approach — pairing seasoned professionals with secure, cloud-based systems so you receive precise, timely financial information.</p>
           <div style="margin-top:10px;display:flex;gap:10px;flex-wrap:wrap">
             <a class="btn" href="#offerings">View Offerings</a>
             <a class="btn btn--outline" href="#benefits">Why Outsource?</a>
@@ -305,19 +304,19 @@
       <div class="cards">
         <article class="card">
           <h3>Virtual Accounting & Virtual CFO</h3>
-          <p>Day‑to‑day bookkeeping and CFO‑level insight without the full‑time cost — ideal for growing teams.</p>
+          <p>Day-to-day bookkeeping and CFO-level insight without the full-time cost — ideal for growing teams.</p>
         </article>
         <article class="card">
           <h3>Accounting Software Implementation</h3>
           <p>Selection, configuration, migration, and training so your system matches your workflows.</p>
         </article>
         <article class="card">
-          <h3>Cloud‑Based Accounting</h3>
-          <p>Secure, anywhere access to real‑time financial data and collaborative approvals.</p>
+          <h3>Cloud-Based Accounting</h3>
+          <p>Secure, anywhere access to real-time financial data and collaborative approvals.</p>
         </article>
         <article class="card">
           <h3>General Ledger Reconstruction</h3>
-          <p>Clean‑up and rebuilds of historical data to restore accuracy and audit‑readiness.</p>
+          <p>Clean-up and rebuilds of historical data to restore accuracy and audit-readiness.</p>
         </article>
         <article class="card">
           <h3>Tax Services</h3>
@@ -325,7 +324,7 @@
         </article>
         <article class="card">
           <h3>Payroll Services</h3>
-          <p>Reliable processing, reporting, and year‑end forms tailored to your policies.</p>
+          <p>Reliable processing, reporting, and year-end forms tailored to your policies.</p>
         </article>
       </div>
     </div>
@@ -335,7 +334,7 @@
   <section id="benefits" class="section" style="background:var(--blue-100)">
     <div class="container">
       <h2>Benefits of outsourced accounting</h2>
-      <p class="sub">Cost‑effective, convenient, and built for consistency.</p>
+      <p class="sub">Cost-effective, convenient, and built for consistency.</p>
       <div class="benefits">
         <div class="benefit">
           <h4>Expert assistance</h4>
@@ -343,7 +342,7 @@
         </div>
         <div class="benefit">
           <h4>Superior planning</h4>
-          <p>Right‑sized scopes and realistic timelines that your team can depend on.</p>
+          <p>Right-sized scopes and realistic timelines that your team can depend on.</p>
         </div>
         <div class="benefit">
           <h4>Accounting system management</h4>
@@ -371,7 +370,7 @@
       <div class="split">
         <div class="box">
           <h2>Technical experience you can count on</h2>
-          <p class="sub">Our advisors guide and recommend; management always retains control over policies and financial statements. With cross‑disciplinary experience in accounting, consulting, auditing, and bookkeeping, we deliver practical steps that move you forward.</p>
+          <p class="sub">Our advisors guide and recommend; management always retains control over policies and financial statements. With cross-disciplinary experience in accounting, consulting, auditing, and bookkeeping, we deliver practical steps that move you forward.</p>
           <p class="sub">You’ll work with a team that is professional, personable, and committed to open communication — the Aiken & Sanders way.</p>
           <div style="margin-top:10px"><a class="btn" href="contact.html">Talk with our Accounting Team</a></div>
         </div>
@@ -390,8 +389,8 @@
           <span class="ribbon" style="background:#FEB200">Get started with Aiken & Sanders</span>
           <h3>Speak with our Accounting Services team</h3>
           <ul class="contact-list">
-            <li><strong>Telephone:</strong> <a href="tel:13605333370" style="color:#fff">360‑533‑3370</a></li>
-            <li><strong>Fax:</strong> 360‑532‑7123</li>
+            <li><strong>Telephone:</strong> <a href="tel:13605333370" style="color:#fff">360-533-3370</a></li>
+            <li><strong>Fax:</strong> 360-532-7123</li>
             <li><strong>Email:</strong> <a href="mailto:janet@aiken-sanders.com" style="color:#fff">janet@aiken-sanders.com</a></li>
             <li><strong>Address:</strong> 324 S MAIN ST UNIT A, MONTESANO, WA 98563</li>
           </ul>
@@ -419,16 +418,19 @@
         </div>
         <div>
           <h4>Quick Links</h4>
-          <a href="#offerings">Services</a><br>
+          <!-- <a href="#offerings">Services</a><br>
           <a href="#acct">Overview</a><br>
           <a href="#benefits">Why Outsource</a><br>
-          <a href="contact.html">Contact</a>
+          <a href="contact.html">Contact</a> -->
+          <a href="about_us.html">About</a><br>
+          <a href="contact_us.html">Contact</a><br>
+          <a href="#services">Services</a>
         </div>
         <div>
           <h4>Contact</h4>
           <p style="margin:0 0 8px">Aiken & Sanders, Inc. PS<br>324 S MAIN ST UNIT A<br>Montesano, WA 98563</p>
-          <a href="tel:13605333370">360‑533‑3370</a><br>
-          <span>Fax: 360‑532‑7123</span><br>
+          <a href="tel:13605333370">360-533-3370</a><br>
+          <span>Fax: 360-532-7123</span><br>
           <a href="mailto:janet@aiken-sanders.com">janet@aiken-sanders.com</a>
         </div>
       </div>
@@ -444,8 +446,9 @@
       const iconClose = document.getElementById('icon-close');
       const mobileMenu = document.getElementById('mobileMenu');
       const closeMenu = document.getElementById('closeMenu');
-      const mobileDropdowns = document.querySelectorAll('.mobile-dropdown');
       const focusableSelectors = 'a, button, input, [tabindex]:not([tabindex="-1"])';
+      const menuPanel = document.querySelector('.menu-panel');
+      const mobileNav = document.querySelector('.menu-mobile-nav');
 
       const setExpanded = (state) => hamburger?.setAttribute('aria-expanded', String(state));
       const toggleIcons = (open) => {
@@ -477,16 +480,43 @@
       closeMenu?.addEventListener('click', closeMobile);
       mobileMenu?.addEventListener('click', (e)=>{ if(e.target === mobileMenu) closeMobile(); });
       document.addEventListener('keydown', (e) => { if(e.key === 'Escape' && mobileMenu.classList.contains('show')) closeMobile(); });
-      mobileDropdowns.forEach(dd=>{
-        const link = dd.querySelector('> a');
-        link?.addEventListener('click', (e)=>{ e.preventDefault(); dd.classList.toggle('active'); });
+
+      // Toggle Services header (click & touch)
+      const toggleHeader = (el, e) => { e.preventDefault(); el.parentElement.classList.toggle('active'); };
+      mobileNav?.addEventListener('click', (e) => {
+        const headerLink = e.target.closest('.mobile-dropdown > a');
+        if(headerLink) toggleHeader(headerLink, e);
+      }, true);
+      mobileNav?.addEventListener('touchend', (e) => {
+        const headerLink = e.target.closest('.mobile-dropdown > a');
+        if(headerLink) toggleHeader(headerLink, e);
+      }, { passive: false, capture: true });
+
+      // Delegate submenu navigation (click & touch): close then navigate
+      const handleSubmenuNav = (anchor) => {
+        const href = anchor.getAttribute('href');
+        closeMobile();
+        setTimeout(() => { window.location.href = href; }, 0);
+      };
+      menuPanel?.addEventListener('click', (e) => {
+        const submenuLink = e.target.closest('.mobile-dropdown-menu a');
+        if(submenuLink){ e.preventDefault(); handleSubmenuNav(submenuLink); }
+      }, true);
+      menuPanel?.addEventListener('touchend', (e) => {
+        const submenuLink = e.target.closest('.mobile-dropdown-menu a');
+        if(submenuLink){ e.preventDefault(); handleSubmenuNav(submenuLink); }
+      }, { passive: false, capture: true });
+
+      // Safety net: bind directly to submenu anchors, too
+      document.querySelectorAll('.mobile-dropdown-menu a').forEach(a => {
+        a.addEventListener('click', (e) => { e.preventDefault(); handleSubmenuNav(a); });
+        a.addEventListener('touchend', (e) => { e.preventDefault(); handleSubmenuNav(a); }, { passive: false });
       });
 
       // Focus first item when opened
-      const panel = document.querySelector('.menu-panel');
       mobileMenu.addEventListener('transitionend', () => {
         if(mobileMenu.classList.contains('show')){
-          const firstFocusable = panel?.querySelector(focusableSelectors);
+          const firstFocusable = menuPanel?.querySelector(focusableSelectors);
           firstFocusable && firstFocusable.focus();
         }
       });
