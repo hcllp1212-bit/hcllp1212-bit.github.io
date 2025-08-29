@@ -76,7 +76,7 @@
     .menu-mobile-cta .btn{width:100%;justify-content:center;padding:14px;font-size:16px}
 
     /* Hero */
-    .hero{background:linear-gradient(165deg, rgba(10,35,66,.85), rgba(10,35,66,.55)), url('https://images.unsplash.com/photo-1523958203904-cdcb402031fd?q=80&w=1920&auto=format&fit=crop');background-size:cover;background-position:center;color:#fff;display:grid;place-items:center;min-height:380px}
+    .hero{background:linear-gradient(165deg, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.55)), url('https://images.unsplash.com/photo-1523958203904-cdcb402031fd?q=80&w=1920&auto=format&fit=crop');background-size:cover;background-position:center;color:#fff;display:grid;place-items:center;min-height:380px}
     .hero .wrap{display:flex;flex-direction:column;align-items:center;gap:12px;padding:72px 0 82px;text-align:center}
     .hero h1{font-family:Merriweather, Georgia, serif;line-height:1.15;font-size:clamp(28px,4.2vw,44px);margin:0}
     .hero p{max-width:80ch;opacity:.95;font-size:clamp(14px,2vw,18px);margin:0 auto}
@@ -115,11 +115,11 @@
     .map{border:1px solid var(--line);border-radius:14px;overflow:hidden;box-shadow:var(--shadow)}
 
     /* CTA strip & footer */
-    .cta-strip{background:var(--blue-800);padding:40px 0;color:#fff}
+    .cta-strip{background:#49515A;padding:40px 0;color:#fff}
     .cta-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:20px}
     .panel--light{background:#f6f9ff;border:1px solid var(--line);color:#1e2c45}
     .panel--dark{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.18)}
-    footer{background:#0b203f;color:#dbe6ff}
+    footer{background:#000000;color:#dbe6ff}
     .footer{padding:36px 0}
     .foot-grid{display:grid;grid-template-columns:1fr .8fr .8fr;gap:20px}
     .foot-grid h4{margin:0 0 10px;color:#fff}
@@ -127,7 +127,12 @@
     .foot-grid a:hover{color:#fff}
     .copyright{border-top:1px solid rgba(255,255,255,.15);padding:14px 0;color:#cbd6f7;font-size:13px;margin-top:12px}
     @media (max-width: 900px){.cta-grid{grid-template-columns:1fr}.foot-grid{grid-template-columns:1fr 1fr}}
-    @media (max-width: 600px){.foot-grid{grid-template-columns:1fr}}
+    @media (max-width: 600px){
+      .foot-grid{grid-template-columns:1fr}
+      /* Keep footer away from screen edges on small screens */
+      footer .footer{padding-left:20px;padding-right:20px}
+      footer .copyright{padding-left:20px;padding-right:20px}
+    }
   </style>
 </head>
 <body>
@@ -135,7 +140,7 @@
   <header class="header" role="banner">
     <div class="container">
       <nav class="nav" aria-label="Primary">
-        <a class="brand" href="#home">
+        <a class="brand" href="index.html">
           <img src="images/logo.png" onerror="this.onerror=null;this.src='/mnt/data/f587725d-4805-4b55-8894-3b0a2c479fa6.png'" alt="Aiken & Sanders Logo">
         </a>
         <button id="hamburger" class="hamburger" aria-expanded="false" aria-controls="menu">
@@ -174,11 +179,6 @@
   <a href="about_us.html">About</a>
 </div>
             <!-- <a href="about_us.html">About</a> -->
-            <!-- <div class="dropdown-menu">
-              <a href="#profile">Firm Profile</a>
-              <a href="#team">Our Team</a>
-              <a href="#values">Why Choose Us</a>
-            </div> -->
           </div>
           <div class="dropdown">
             <a href="#services">Services</a>
@@ -186,18 +186,8 @@
               <a href="audit_assurance.html">Assurance & Audits</a>
               <a href="accounting_services.html">Accounting Services</a>
               <a href="taxation_service.html">Taxation Services</a>
-              <!-- <a href="#tech">Information Technology</a> -->
             </div>
           </div>
-          <!-- <div class="dropdown">
-            <a href="#resources">Resources</a>
-            <div class="dropdown-menu">
-              <a href="#news">Newsletters</a>
-              <a href="#tools">Financial Tools</a>
-              <a href="#links">Useful Links</a>
-              <a href="#center">Info Center</a>
-            </div>
-          </div> -->
           <a href="contact_us.html">Contact</a>
           <a class="btn" href="contact_us.html">Get in Touch</a>
         </div>
@@ -225,21 +215,12 @@
         <div class="mobile-dropdown">
           <a href="#services">Services</a>
           <div class="mobile-dropdown-menu">
-            <a href="#audit">Assurance & Audits</a>
-            <a href="#acct">Accounting & Advisory</a>
-            <a href="#tax">Taxation Services</a>
-            <a href="#tech">Information Technology</a>
+            <!-- Ensure these navigate to the same pages as desktop -->
+            <a href="audit_assurance.html">Assurance & Audits</a>
+            <a href="accounting_services.html">Accounting Services</a>
+            <a href="taxation_service.html">Taxation Services</a>
           </div>
         </div>
-        <!-- <div class="mobile-dropdown">
-          <a href="#resources">Resources</a>
-          <div class="mobile-dropdown-menu">
-            <a href="#news">Newsletters</a>
-            <a href="#tools">Financial Tools</a>
-            <a href="#links">Useful Links</a>
-            <a href="#center">Info Center</a>
-          </div>
-        </div> -->
         <a href="#contact">Contact</a>
       </div>
       <div class="menu-mobile-cta">
@@ -293,7 +274,7 @@
                   <option value="Audit & Assurance">Audit & Assurance</option>
                   <option value="Accounting">Accounting</option>
                   <option value="Taxation">Taxation</option>
-                  <option value="Technology">Information Technology</option>
+                  <!-- <option value="Technology">Information Technology</option> -->
                 </select>
               </div>
               <div class="full">
@@ -383,7 +364,7 @@
     const hamburger = document.getElementById('hamburger');
     const mobileMenu = document.getElementById('mobileMenu');
     const closeMenu = document.getElementById('closeMenu');
-    const mobileDropdowns = document.querySelectorAll('.mobile-dropdown');
+    const menuPanel = document.querySelector('.menu-panel');
 
     const openMobile = () => {
       mobileMenu.style.display = 'block';
@@ -402,9 +383,22 @@
     hamburger?.addEventListener('click', openMobile);
     closeMenu?.addEventListener('click', closeMobile);
     mobileMenu?.addEventListener('click', (e)=>{ if(e.target === mobileMenu) closeMobile(); });
-    mobileDropdowns.forEach(dd=>{
-      const link = dd.querySelector('> a');
-      link?.addEventListener('click', (e)=>{ e.preventDefault(); dd.classList.toggle('active'); });
+
+    // Robust event delegation for mobile dropdowns
+    menuPanel?.addEventListener('click', (e)=>{
+      const headerLink = e.target.closest('.mobile-dropdown > a');
+      if(headerLink){
+        e.preventDefault(); // toggle accordion, don't navigate
+        const dd = headerLink.parentElement;
+        dd.classList.toggle('active');
+        return;
+      }
+      const submenuLink = e.target.closest('.mobile-dropdown-menu a');
+      if(submenuLink){
+        // close the drawer and then navigate (works reliably on iOS/Android)
+        closeMobile();
+        setTimeout(()=>{ window.location.href = submenuLink.href; }, 0);
+      }
     });
 
     // Form handling
